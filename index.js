@@ -16,6 +16,10 @@ const TITLE = "GENERATOR SIMULATOR"; /* Change the title to whatever */
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
+    <h1 className="title" data-text={TITLE}>
+      {TITLE}
+    </h1>
+
     <HOME />
   </BrowserRouter>
 );
