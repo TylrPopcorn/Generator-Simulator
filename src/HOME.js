@@ -1,5 +1,4 @@
 import React from "react";
-import { Link, Routes, Route, useNavigate } from "react-router-dom";
 
 //imports:]----
 import LetterGenerator from "../simulators/LetterGenerator";
@@ -17,10 +16,7 @@ class HOME extends React.Component {
   render() {
     return (
       <div id="wrapper" className="App">
-        <Routes>
-          {/* ROUTES */}
-          <Route path="/" element={<Test />} />
-        </Routes>
+        <p>HI</p>
       </div>
     );
   }
