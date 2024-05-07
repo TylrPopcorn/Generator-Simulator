@@ -1,9 +1,8 @@
 import React from "react";
 
 //imports:]----
-import LetterGenerator from "../simulators/LetterGenerator";
+import "../styles/home.css";
 
-let Test;
 //MAIN FUNCTION]:----------
 class HOME extends React.Component {
   //
@@ -16,7 +15,12 @@ class HOME extends React.Component {
   render() {
     return (
       <div id="wrapper" className="App">
-        <p>HI</p>
+        <p className="heading">Choose an option</p>
+        <div className="boxOptions">
+          <button>Letter</button>
+          <button>Number</button>
+          <button>Word</button>
+        </div>
       </div>
     );
   }
@@ -24,14 +28,5 @@ class HOME extends React.Component {
 
 //
 
-Test = class extends React.Component {
-  render() {
-    return (
-      <div>
-        <p>HI</p>
-      </div>
-    );
-  }
-};
 //EXPORTS:----------
 export default HOME;
