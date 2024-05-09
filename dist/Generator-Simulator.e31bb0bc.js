@@ -36800,7 +36800,12 @@ exports.default = void 0;
 var _react = _interopRequireDefault(require("react"));
 require("../styles/home.css");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-//imports:]----
+// THIS IS THE HOME SCREEN
+
+//imports:]--
+
+//vars:]--------
+const TITLE = "GENERATOR SIMULATOR"; /* Change the title to whatever */
 
 //MAIN FUNCTION]:----------
 class HOME extends _react.default.Component {
@@ -36815,11 +36820,20 @@ class HOME extends _react.default.Component {
     return /*#__PURE__*/_react.default.createElement("div", {
       id: "wrapper",
       className: "App"
-    }, /*#__PURE__*/_react.default.createElement("p", {
+    }, /*#__PURE__*/_react.default.createElement("h1", {
+      className: "title",
+      "data-text": TITLE
+    }, TITLE), /*#__PURE__*/_react.default.createElement("p", {
       className: "heading"
     }, "Choose an option"), /*#__PURE__*/_react.default.createElement("div", {
       className: "boxOptions"
-    }, /*#__PURE__*/_react.default.createElement("button", null, "Letter"), /*#__PURE__*/_react.default.createElement("button", null, "Number"), /*#__PURE__*/_react.default.createElement("button", null, "Word")));
+    }, /*#__PURE__*/_react.default.createElement("button", {
+      className: "Letter_Option"
+    }, "Letter"), /*#__PURE__*/_react.default.createElement("button", {
+      className: "Number_Option"
+    }, "Number"), /*#__PURE__*/_react.default.createElement("button", {
+      className: "Word_Option"
+    }, "Word")));
   }
 }
 
@@ -36847,13 +36861,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 
 //vars:
-const TITLE = "GENERATOR SIMULATOR"; /* Change the title to whatever */
+//----
 
 const root = _client.default.createRoot(document.getElementById("root"));
-root.render( /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react.default.createElement("h1", {
-  className: "title",
-  "data-text": TITLE
-}, TITLE), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Routes, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
+root.render( /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Routes, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
   path: "/",
   element: /*#__PURE__*/_react.default.createElement(_HOME.default, null)
 }))));
@@ -36882,7 +36893,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52085" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52263" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
