@@ -28,39 +28,43 @@ body {
 
 /* ALL of 'HOME' related styling*/
 #wrapper {
-  background-color: grey;
+  background-color: black;
   height: 100vh;
 }
 
 /* ------ TITLE ----- */
 #wrapper .title {
+  margin-top: 2%;
   font-size: 40px;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
 }
 
 /* ------ header ----- */
 .heading {
-  margin-top: -10px;
+  margin-top: -5px;
 }
 
 .boxOptions {
   background-color: black;
 
-  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 25%;
   height: 80%;
 }
 
-.Letter_Option {
-  margin-top: 2%;
-  margin-left: 2%;
-  margin-right: 2%;
+.Letter_Option,
+.Number_Option,
+.Word_Option {
+  margin-top: -5%;
+  margin-left: 4%;
+  margin-right: 4%;
 
-  width: 40%;
-  height: 70%;
+  border-radius: 5%;
+
+  width: 90%;
+  height: 80%;
 }
 
 

@@ -1,17 +1,18 @@
 /* ALL of 'HOME' related styling*/
 #wrapper {
-  background-color: grey;
+  background-color: black;
   height: 100vh;
 }
 
 /* ------ TITLE ----- */
 #wrapper .title {
+  margin-top: 2%;
   font-size: 40px;
 }
 
 /* ------ header ----- */
 .heading {
-  margin-top: -10px;
+  margin-top: -5px;
 }
 
 .boxOptions {
@@ -28,12 +29,12 @@
 .Letter_Option,
 .Number_Option,
 .Word_Option {
-  margin-top: 2%;
-  margin-left: 5%;
-  margin-right: 5%;
+  margin-top: -5%;
+  margin-left: 4%;
+  margin-right: 4%;
 
   border-radius: 5%;
 
   width: 90%;
-  height: 90%;
+  height: 80%;
 }
