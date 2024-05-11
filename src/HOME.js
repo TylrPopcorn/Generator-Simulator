@@ -30,6 +30,7 @@ class HOME extends React.Component {
           <button className="Number_Option">Number</button>
           <button className="Word_Option">Word</button>
         </div>
+        <p className="InfoBox"> INFORMATION </p>
       </div>
     );
   }
