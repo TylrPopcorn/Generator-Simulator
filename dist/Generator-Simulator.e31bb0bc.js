@@ -36823,7 +36823,9 @@ class HOME extends _react.default.Component {
     }, /*#__PURE__*/_react.default.createElement("h1", {
       className: "title",
       "data-text": TITLE
-    }, TITLE), /*#__PURE__*/_react.default.createElement("p", {
+    }, TITLE), /*#__PURE__*/_react.default.createElement("a", {
+      href: "#"
+    }, /*#__PURE__*/_react.default.createElement("span", null, "Button")), /*#__PURE__*/_react.default.createElement("p", {
       className: "heading"
     }, "Choose an option"), /*#__PURE__*/_react.default.createElement("div", {
       className: "boxOptions"
@@ -36895,7 +36897,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61121" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64959" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
