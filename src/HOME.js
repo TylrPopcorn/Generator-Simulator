@@ -33,8 +33,12 @@ class HOME extends React.Component {
           <button className="Letter_Option">
             <span>Letter</span>
           </button>
-          <button className="Number_Option">Number</button>
-          <button className="Word_Option">Word</button>
+          <button className="Number_Option">
+            <span>Number</span>
+          </button>
+          <button className="Word_Option">
+            <span>Word</span>
+          </button>
         </div>
         <p className="InfoBox"> INFORMATION </p>
       </div>
