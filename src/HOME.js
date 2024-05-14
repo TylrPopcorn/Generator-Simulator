@@ -30,7 +30,9 @@ class HOME extends React.Component {
         {/*----------*/}
         <p className="heading">Choose an option</p>
         <div className="boxOptions">
-          <button className="Letter_Option">Letter</button>
+          <button className="Letter_Option">
+            <span>Letter</span>
+          </button>
           <button className="Number_Option">Number</button>
           <button className="Word_Option">Word</button>
         </div>
