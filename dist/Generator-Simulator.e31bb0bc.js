@@ -36833,9 +36833,9 @@ class HOME extends _react.default.Component {
       className: "Letter_Option"
     }, /*#__PURE__*/_react.default.createElement("span", null, "Letter")), /*#__PURE__*/_react.default.createElement("button", {
       className: "Number_Option"
-    }, "Number"), /*#__PURE__*/_react.default.createElement("button", {
+    }, /*#__PURE__*/_react.default.createElement("span", null, "Number")), /*#__PURE__*/_react.default.createElement("button", {
       className: "Word_Option"
-    }, "Word")), /*#__PURE__*/_react.default.createElement("p", {
+    }, /*#__PURE__*/_react.default.createElement("span", null, "Word"))), /*#__PURE__*/_react.default.createElement("p", {
       className: "InfoBox"
     }, " INFORMATION "));
   }
@@ -36897,7 +36897,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56709" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62630" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
