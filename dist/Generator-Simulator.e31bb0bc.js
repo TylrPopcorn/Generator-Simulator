@@ -36823,19 +36823,19 @@ class HOME extends _react.default.Component {
     }, /*#__PURE__*/_react.default.createElement("h1", {
       className: "title",
       "data-text": TITLE
-    }, TITLE), /*#__PURE__*/_react.default.createElement("a", {
-      href: "#"
-    }, /*#__PURE__*/_react.default.createElement("span", null, "Button")), /*#__PURE__*/_react.default.createElement("p", {
+    }, TITLE), /*#__PURE__*/_react.default.createElement("p", {
       className: "heading"
     }, "Choose an option"), /*#__PURE__*/_react.default.createElement("div", {
       className: "boxOptions"
     }, /*#__PURE__*/_react.default.createElement("button", {
-      className: "Letter_Option"
-    }, /*#__PURE__*/_react.default.createElement("span", null, "Letter")), /*#__PURE__*/_react.default.createElement("button", {
+      className: "Letter_Option Shrink"
+    }, /*#__PURE__*/_react.default.createElement("span", null)), /*#__PURE__*/_react.default.createElement("button", {
       className: "Number_Option"
-    }, /*#__PURE__*/_react.default.createElement("span", null, "Number")), /*#__PURE__*/_react.default.createElement("button", {
-      className: "Word_Option"
-    }, /*#__PURE__*/_react.default.createElement("span", null, "Word"))), /*#__PURE__*/_react.default.createElement("p", {
+    }, /*#__PURE__*/_react.default.createElement("span", null)), /*#__PURE__*/_react.default.createElement("button", {
+      className: "Word_Option Shrink"
+    }, /*#__PURE__*/_react.default.createElement("span", null))), /*#__PURE__*/_react.default.createElement("p", {
+      className: "chosenTitle"
+    }, "TITLE"), /*#__PURE__*/_react.default.createElement("p", {
       className: "InfoBox"
     }, " INFORMATION "));
   }
@@ -36897,7 +36897,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65476" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55149" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

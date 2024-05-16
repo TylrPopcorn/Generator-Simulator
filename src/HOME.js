@@ -23,23 +23,21 @@ class HOME extends React.Component {
         <h1 className="title" data-text={TITLE}>
           {TITLE}
         </h1>
-        <a href="#">
-          <span>Button</span>
-        </a>
 
         {/*----------*/}
         <p className="heading">Choose an option</p>
         <div className="boxOptions">
-          <button className="Letter_Option">
-            <span>Letter</span>
+          <button className="Letter_Option Shrink">
+            <span></span>
           </button>
           <button className="Number_Option">
-            <span>Number</span>
+            <span></span>
           </button>
-          <button className="Word_Option">
-            <span>Word</span>
+          <button className="Word_Option Shrink">
+            <span></span>
           </button>
         </div>
+        <p className="chosenTitle">TITLE</p>
         <p className="InfoBox"> INFORMATION </p>
       </div>
     );
