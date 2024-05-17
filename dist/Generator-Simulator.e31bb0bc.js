@@ -36811,9 +36811,27 @@ const TITLE = "GENERATOR SIMULATOR"; /* Change the title to whatever */
 class HOME extends _react.default.Component {
   //
   //
-  //   constructor(props) {
-  //     super(props); //Allow access to 'this.props'
-  //   }
+  constructor(props) {
+    super(props); // Allow access to 'this.props'
+  }
+  MouseEnter = event => {
+    const button = event.currentTarget;
+    button.classList.remove("Shrink");
+  };
+  MouseLeave = event => {
+    const button = event.currentTarget;
+    console.log("left");
+    button.classList.add("Shrink");
+  };
+  componentDidMount() {
+    const boxOptionsElements = document.querySelectorAll(".boxOptions");
+    boxOptionsElements.forEach(box => {
+      const letterOptionElements = box.querySelectorAll("[class*='_Option']");
+      letterOptionElements.forEach(element => {
+        element.classList.add("Shrink");
+      });
+    });
+  }
 
   //---HTML
   render() {
@@ -36828,11 +36846,17 @@ class HOME extends _react.default.Component {
     }, "Choose an option"), /*#__PURE__*/_react.default.createElement("div", {
       className: "boxOptions"
     }, /*#__PURE__*/_react.default.createElement("button", {
-      className: "Letter_Option Shrink"
+      className: "Letter_Option Shrink",
+      onMouseEnter: this.MouseEnter,
+      onMouseLeave: this.MouseLeave
     }, /*#__PURE__*/_react.default.createElement("span", null)), /*#__PURE__*/_react.default.createElement("button", {
-      className: "Number_Option"
+      className: "Number_Option",
+      onMouseEnter: this.MouseEnter,
+      onMouseLeave: this.MouseLeave
     }, /*#__PURE__*/_react.default.createElement("span", null)), /*#__PURE__*/_react.default.createElement("button", {
-      className: "Word_Option Shrink"
+      className: "Word_Option Shrink",
+      onMouseEnter: this.MouseEnter,
+      onMouseLeave: this.MouseLeave
     }, /*#__PURE__*/_react.default.createElement("span", null))), /*#__PURE__*/_react.default.createElement("p", {
       className: "chosenTitle"
     }, "TITLE"), /*#__PURE__*/_react.default.createElement("p", {
@@ -36897,7 +36921,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55149" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55438" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
