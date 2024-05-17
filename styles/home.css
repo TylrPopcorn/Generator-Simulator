@@ -4,8 +4,11 @@
   0% {
     background-position: 0 0;
   }
+  50% {
+    background-position: 800% 0; /* Adjust the final position as needed */
+  }
   100% {
-    background-position: 300% 0; /* Adjust the final position as needed */
+    background-position: 0 0;
   }
 }
 /*-----------------------*/
@@ -36,12 +39,13 @@
   height: 75%;
 }
 
+/* -------- BOX / BUTTONS ------- */
 .Letter_Option,
 .Number_Option,
 .Word_Option {
   position: relative;
 
-  margin-top: -5%;
+  margin-top: -10%;
   margin-left: 3%;
   margin-right: 3%;
   border-radius: 5%;
@@ -61,7 +65,10 @@
 }
 
 .Shrink {
-  height: 73%;
+  height: 70%;
+}
+
+.Hide {
 }
 
 .Letter_Option span,
@@ -113,25 +120,37 @@
   background-size: 400%;
   opacity: 0;
   transition: 0.5s;
-  animation: animate 2s linear infinite;
+  animation: animate 80s linear infinite;
 }
 
-/* .Letter_Option::before {
+.Letter_Option::before {
   background: linear-gradient(
     45deg,
+    #000000,
+    #000000,
+    #000000,
+    #000000,
     #7d0000,
     #a60000,
-    #cc0000,
+    #000000,
     #000000,
     #ff0000,
     #000000,
-    #ff0000,
+    #000000,
     #e60000,
     #cc0000,
     #a60000,
-    #7d0000
+    #7d0000,
+    #000000,
+    #000000,
+    #000000,
+    #000000,
+    #000000,
+    #000000,
+    #000000,
+    #000000
   );
-} */
+}
 
 /* .Word_Option::before {
   background: linear-gradient(
@@ -196,6 +215,10 @@
 .Letter_Option::after {
   background: linear-gradient(
     45deg,
+    #000000,
+    #000000,
+    #000000,
+    #000000,
     #7d0000,
     #a60000,
     #000000,
@@ -206,7 +229,11 @@
     #e60000,
     #cc0000,
     #a60000,
-    #7d0000
+    #7d0000,
+    #000000,
+    #000000,
+    #000000,
+    #000000
   );
 
   box-shadow: 0 0 5vh rgba(255, 0, 0, 0.4);
@@ -227,7 +254,7 @@
   opacity: 0;
   filter: blur(20px);
   transition: 0.5s;
-  animation: animate 20s linear infinite;
+  animation: animate 80s linear infinite;
 }
 
 .Letter_Option:hover::before,
