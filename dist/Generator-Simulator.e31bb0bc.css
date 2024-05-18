@@ -97,6 +97,7 @@ body {
 }
 
 .Hide {
+  opacity: 0;
 }
 
 .Letter_Option span,

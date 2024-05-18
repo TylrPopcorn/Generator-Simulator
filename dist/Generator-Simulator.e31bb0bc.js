@@ -36790,7 +36790,20 @@ module.hot.accept(reloadCSS);
 var reloadCSS = require('_css_loader');
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"src/HOME.js":[function(require,module,exports) {
+},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"src/scripts/wait.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+// This function will wait for the specified time in milliseconds.
+function wait(time) {
+  return new Promise(function (resolve) {
+    setTimeout(resolve, time);
+  });
+}
+exports.default = wait;
+},{}],"src/HOME.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36799,14 +36812,20 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var _react = _interopRequireDefault(require("react"));
 require("../styles/home.css");
+var _wait = _interopRequireDefault(require("./scripts/wait"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 // THIS IS THE HOME SCREEN
 
 //imports:]--
 
 //vars:]--------
-const TITLE = "GENERATOR SIMULATOR"; /* Change the title to whatever */
-
+let Vars = {
+  TITLE: "GENERATOR SIMULATOR" /* Change the title to whatever */,
+  Functions: {}
+};
+let Functions = Vars.Functions; //Accessible outside of variables.
+//--------------            --------------          ----------------        -----------------       -------------------
+//
 //MAIN FUNCTION]:----------
 class HOME extends _react.default.Component {
   //
@@ -36824,13 +36843,7 @@ class HOME extends _react.default.Component {
     button.classList.add("Shrink");
   };
   componentDidMount() {
-    const boxOptionsElements = document.querySelectorAll(".boxOptions");
-    boxOptionsElements.forEach(box => {
-      const letterOptionElements = box.querySelectorAll("[class*='_Option']");
-      letterOptionElements.forEach(element => {
-        element.classList.add("Shrink");
-      });
-    });
+    Functions["componentDidMount"]();
   }
 
   //---HTML
@@ -36840,8 +36853,8 @@ class HOME extends _react.default.Component {
       className: "App"
     }, /*#__PURE__*/_react.default.createElement("h1", {
       className: "title",
-      "data-text": TITLE
-    }, TITLE), /*#__PURE__*/_react.default.createElement("p", {
+      "data-text": Vars.TITLE
+    }, Vars.TITLE), /*#__PURE__*/_react.default.createElement("p", {
       className: "heading"
     }, "Choose an option"), /*#__PURE__*/_react.default.createElement("div", {
       className: "boxOptions"
@@ -36864,12 +36877,95 @@ class HOME extends _react.default.Component {
     }, " INFORMATION "));
   }
 }
+//
+//--------------            --------------          ----------------        -----------------       -------------------
+//
+// EXTRA FUNCTIONS]:----------
+Functions["getRandomNumber"] = function (min, max) {
+  //Will return a random number between two specified numbers invoked with.
+  return Math.floor(min + Math.random() * (max - min + 1));
+};
 
 //
+//
+
+Functions["componentDidMount"] = function () {
+  //useEffect()
+
+  const randomNumber = Functions["getRandomNumber"];
+  const elements = {
+    Letter: document.getElementsByClassName("Letter_Option")[0],
+    Number: document.getElementsByClassName("Number_Option")[0],
+    Word: document.getElementsByClassName("Word_Option")[0]
+  };
+  //----
+
+  for (let button in elements) {
+    const correspondant = elements[button];
+    correspondant.classList.add("Shrink");
+    (0, _wait.default)(300).then(() => {
+      correspondant.classList.add("Hide");
+    });
+  }
+  (0, _wait.default)(1000).then(() => {
+    for (let button in elements) {
+      const correspondant = elements[button];
+      correspondant.classList.remove("Hide");
+    }
+  });
+
+  //ABSWER:
+  //  async function animateElements(elements) {
+  //    const delayBeforeShrink = 0; // Delay before adding 'Shrink' class
+  //    const shrinkDuration = 300; // Duration for 'Shrink' class animation
+  //    const delayBeforeHide = 1000; // Delay before adding 'Hide' class
+  //    const delayBeforeShow = 1000; // Delay before removing 'Hide' class
+
+  //    for (let button in elements) {
+  //      const correspondant = elements[button];
+
+  //      await wait(delayBeforeShrink); // Delay before adding 'Shrink' class
+  //      correspondant.classList.add("Shrink");
+
+  //      await wait(shrinkDuration); // Wait for the 'Shrink' animation to complete
+  //      correspondant.classList.add("Hide");
+
+  //      await wait(delayBeforeHide); // Delay before removing 'Hide' class
+  //    }
+
+  //    await wait(delayBeforeShow); // Delay before showing elements again
+
+  //    for (let button in elements) {
+  //      const correspondant = elements[button];
+  //      correspondant.classList.remove("Hide");
+  //    }
+  //  }
+
+  //  // Usage
+  //  animateElements(elements);
+
+  // const boxOptionsElements = document.querySelectorAll(".boxOptions");
+
+  // boxOptionsElements.forEach((box) => {
+  //   const letterOptionElements = box.querySelectorAll("[class*='_Option']");
+  //   letterOptionElements.forEach((element) => {
+  //     element.classList.add("Shrink");
+  //     // element.classList.add("Hide");
+
+  //     wait(randomNumber(100, 500)).then(() => {
+  //       element.classList.add("Hide");
+
+  //       wait(randomNumber(300, 1000)).then(() => {
+  //         element.classList.remove("Hide");
+  //       });
+  //     });
+  //   });
+  // });
+};
 
 //EXPORTS:----------
 var _default = exports.default = HOME;
-},{"react":"node_modules/react/index.js","../styles/home.css":"styles/home.css"}],"index.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","../styles/home.css":"styles/home.css","./scripts/wait":"src/scripts/wait.ts"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -36921,7 +37017,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55438" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63644" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

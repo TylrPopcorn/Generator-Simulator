@@ -3,10 +3,16 @@ import React from "react";
 
 //imports:]--
 import "../styles/home.css";
+import wait from "./scripts/wait";
 
 //vars:]--------
-const TITLE = "GENERATOR SIMULATOR"; /* Change the title to whatever */
-
+let Vars = {
+  TITLE: "GENERATOR SIMULATOR" /* Change the title to whatever */,
+  Functions: {},
+};
+let Functions = Vars.Functions; //Accessible outside of variables.
+//--------------            --------------          ----------------        -----------------       -------------------
+//
 //MAIN FUNCTION]:----------
 class HOME extends React.Component {
   //
@@ -27,14 +33,7 @@ class HOME extends React.Component {
   };
 
   componentDidMount() {
-    const boxOptionsElements = document.querySelectorAll(".boxOptions");
-
-    boxOptionsElements.forEach((box) => {
-      const letterOptionElements = box.querySelectorAll("[class*='_Option']");
-      letterOptionElements.forEach((element) => {
-        element.classList.add("Shrink");
-      });
-    });
+    Functions["componentDidMount"]();
   }
 
   //---HTML
@@ -42,8 +41,8 @@ class HOME extends React.Component {
     return (
       <div id="wrapper" className="App">
         {/*---- TITLE ----*/}
-        <h1 className="title" data-text={TITLE}>
-          {TITLE}
+        <h1 className="title" data-text={Vars.TITLE}>
+          {Vars.TITLE}
         </h1>
 
         {/*----------*/}
@@ -77,8 +76,95 @@ class HOME extends React.Component {
     );
   }
 }
+//
+//--------------            --------------          ----------------        -----------------       -------------------
+//
+// EXTRA FUNCTIONS]:----------
+Functions["getRandomNumber"] = function (min, max) {
+  //Will return a random number between two specified numbers invoked with.
+  return Math.floor(min + Math.random() * (max - min + 1));
+};
 
 //
+//
+
+Functions["componentDidMount"] = function () {
+  //useEffect()
+
+  const randomNumber = Functions["getRandomNumber"];
+  const elements = {
+    Letter: document.getElementsByClassName("Letter_Option")[0],
+    Number: document.getElementsByClassName("Number_Option")[0],
+    Word: document.getElementsByClassName("Word_Option")[0],
+  };
+  //----
+
+  for (let button in elements) {
+    const correspondant = elements[button];
+
+    correspondant.classList.add("Shrink");
+
+    wait(300).then(() => {
+      correspondant.classList.add("Hide");
+    });
+  }
+
+  wait(1000).then(() => {
+    for (let button in elements) {
+      const correspondant = elements[button];
+
+      correspondant.classList.remove("Hide");
+    }
+  });
+
+  //ABSWER:
+  //  async function animateElements(elements) {
+  //    const delayBeforeShrink = 0; // Delay before adding 'Shrink' class
+  //    const shrinkDuration = 300; // Duration for 'Shrink' class animation
+  //    const delayBeforeHide = 1000; // Delay before adding 'Hide' class
+  //    const delayBeforeShow = 1000; // Delay before removing 'Hide' class
+
+  //    for (let button in elements) {
+  //      const correspondant = elements[button];
+
+  //      await wait(delayBeforeShrink); // Delay before adding 'Shrink' class
+  //      correspondant.classList.add("Shrink");
+
+  //      await wait(shrinkDuration); // Wait for the 'Shrink' animation to complete
+  //      correspondant.classList.add("Hide");
+
+  //      await wait(delayBeforeHide); // Delay before removing 'Hide' class
+  //    }
+
+  //    await wait(delayBeforeShow); // Delay before showing elements again
+
+  //    for (let button in elements) {
+  //      const correspondant = elements[button];
+  //      correspondant.classList.remove("Hide");
+  //    }
+  //  }
+
+  //  // Usage
+  //  animateElements(elements);
+
+  // const boxOptionsElements = document.querySelectorAll(".boxOptions");
+
+  // boxOptionsElements.forEach((box) => {
+  //   const letterOptionElements = box.querySelectorAll("[class*='_Option']");
+  //   letterOptionElements.forEach((element) => {
+  //     element.classList.add("Shrink");
+  //     // element.classList.add("Hide");
+
+  //     wait(randomNumber(100, 500)).then(() => {
+  //       element.classList.add("Hide");
+
+  //       wait(randomNumber(300, 1000)).then(() => {
+  //         element.classList.remove("Hide");
+  //       });
+  //     });
+  //   });
+  // });
+};
 
 //EXPORTS:----------
 export default HOME;
