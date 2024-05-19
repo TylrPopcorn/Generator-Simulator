@@ -36803,7 +36803,78 @@ function wait(time) {
   });
 }
 exports.default = wait;
-},{}],"src/HOME.js":[function(require,module,exports) {
+},{}],"src/scripts/Functions.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _wait = _interopRequireDefault(require("./wait"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+//Extra functions all under one file.
+//
+//--[ IMPORTS ]:--
+
+//--[ VARIABLES ]:--
+let Functions = {};
+
+//----------------                  ------------------------------                      ----------------------------
+//----------------                  ------------------------------                      ----------------------------
+Functions["getRandomNumber"] = function (min, max) {
+  //Will return a random number between two specified numbers invoked with.
+  return Math.floor(min + Math.random() * (max - min + 1));
+};
+
+//
+//
+
+Functions["showButtons"] = async function (elements) {
+  //Will show homepage buttons in an orderly fashion.
+
+  const delayBeforeShow = 200; // Delay before removing 'Hide' class
+
+  for (let button in elements) {
+    //Loop through the elements,
+    const correspondant = elements[button];
+    await (0, _wait.default)(delayBeforeShow); // Delay before showing elements again
+    correspondant.classList.remove("Hide");
+  }
+};
+
+//
+//
+
+Functions["componentDidMount"] = function () {
+  //useEffect() function. Will run after the home page mounts.
+
+  const randomNumber = Functions["getRandomNumber"];
+  const elements = {
+    Letter: document.getElementsByClassName("Letter_Option")[0],
+    Number: document.getElementsByClassName("Number_Option")[0],
+    Word: document.getElementsByClassName("Word_Option")[0]
+  };
+  //----
+
+  for (let button in elements) {
+    //Loop through elements
+    const correspondant = elements[button];
+    correspondant.classList.add("Shrink");
+    (0, _wait.default)(200).then(() => {
+      //Wait, then hide elements
+      correspondant.classList.add("Hide");
+    });
+  }
+  (0, _wait.default)(randomNumber(500, 900)).then(() => {
+    //Wait then show elements
+    Functions["showButtons"](elements);
+  });
+};
+//----------------                  ------------------------------                      ----------------------------
+
+//-----[ EXPORTS ]: --]
+var _default = exports.default = Functions; //---------------------
+},{"./wait":"src/scripts/wait.ts"}],"src/HOME.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36812,7 +36883,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var _react = _interopRequireDefault(require("react"));
 require("../styles/home.css");
-var _wait = _interopRequireDefault(require("./scripts/wait"));
+var _Functions = _interopRequireDefault(require("./scripts/Functions"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 // THIS IS THE HOME SCREEN
 
@@ -36820,10 +36891,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 //vars:]--------
 let Vars = {
-  TITLE: "GENERATOR SIMULATOR" /* Change the title to whatever */,
-  Functions: {}
+  TITLE: "GENERATOR SIMULATOR" /* Change the title to whatever */
+
+  //--add more variables here:--
+  //--
+  //--
 };
-let Functions = Vars.Functions; //Accessible outside of variables.
+
 //--------------            --------------          ----------------        -----------------       -------------------
 //
 //MAIN FUNCTION]:----------
@@ -36832,18 +36906,25 @@ class HOME extends _react.default.Component {
   //
   constructor(props) {
     super(props); // Allow access to 'this.props'
+
+    this.state = {
+      mouseEntered: false //used to determine if the mouse has enetered a button or not.
+    };
   }
   MouseEnter = event => {
     const button = event.currentTarget;
     button.classList.remove("Shrink");
+    const optionTitle = document.getElementsByClassName("optionTitle")[0];
+    optionTitle.classList.remove("Hide");
   };
   MouseLeave = event => {
     const button = event.currentTarget;
-    console.log("left");
     button.classList.add("Shrink");
+    const optionTitle = document.getElementsByClassName("optionTitle")[0];
+    optionTitle.classList.add("Hide");
   };
   componentDidMount() {
-    Functions["componentDidMount"]();
+    _Functions.default["componentDidMount"]();
   }
 
   //---HTML
@@ -36871,7 +36952,7 @@ class HOME extends _react.default.Component {
       onMouseEnter: this.MouseEnter,
       onMouseLeave: this.MouseLeave
     }, /*#__PURE__*/_react.default.createElement("span", null))), /*#__PURE__*/_react.default.createElement("p", {
-      className: "chosenTitle"
+      className: "optionTitle Hide"
     }, "TITLE"), /*#__PURE__*/_react.default.createElement("p", {
       className: "InfoBox"
     }, " INFORMATION "));
@@ -36879,93 +36960,10 @@ class HOME extends _react.default.Component {
 }
 //
 //--------------            --------------          ----------------        -----------------       -------------------
-//
-// EXTRA FUNCTIONS]:----------
-Functions["getRandomNumber"] = function (min, max) {
-  //Will return a random number between two specified numbers invoked with.
-  return Math.floor(min + Math.random() * (max - min + 1));
-};
-
-//
-//
-
-Functions["componentDidMount"] = function () {
-  //useEffect()
-
-  const randomNumber = Functions["getRandomNumber"];
-  const elements = {
-    Letter: document.getElementsByClassName("Letter_Option")[0],
-    Number: document.getElementsByClassName("Number_Option")[0],
-    Word: document.getElementsByClassName("Word_Option")[0]
-  };
-  //----
-
-  for (let button in elements) {
-    const correspondant = elements[button];
-    correspondant.classList.add("Shrink");
-    (0, _wait.default)(300).then(() => {
-      correspondant.classList.add("Hide");
-    });
-  }
-  (0, _wait.default)(1000).then(() => {
-    for (let button in elements) {
-      const correspondant = elements[button];
-      correspondant.classList.remove("Hide");
-    }
-  });
-
-  //ABSWER:
-  //  async function animateElements(elements) {
-  //    const delayBeforeShrink = 0; // Delay before adding 'Shrink' class
-  //    const shrinkDuration = 300; // Duration for 'Shrink' class animation
-  //    const delayBeforeHide = 1000; // Delay before adding 'Hide' class
-  //    const delayBeforeShow = 1000; // Delay before removing 'Hide' class
-
-  //    for (let button in elements) {
-  //      const correspondant = elements[button];
-
-  //      await wait(delayBeforeShrink); // Delay before adding 'Shrink' class
-  //      correspondant.classList.add("Shrink");
-
-  //      await wait(shrinkDuration); // Wait for the 'Shrink' animation to complete
-  //      correspondant.classList.add("Hide");
-
-  //      await wait(delayBeforeHide); // Delay before removing 'Hide' class
-  //    }
-
-  //    await wait(delayBeforeShow); // Delay before showing elements again
-
-  //    for (let button in elements) {
-  //      const correspondant = elements[button];
-  //      correspondant.classList.remove("Hide");
-  //    }
-  //  }
-
-  //  // Usage
-  //  animateElements(elements);
-
-  // const boxOptionsElements = document.querySelectorAll(".boxOptions");
-
-  // boxOptionsElements.forEach((box) => {
-  //   const letterOptionElements = box.querySelectorAll("[class*='_Option']");
-  //   letterOptionElements.forEach((element) => {
-  //     element.classList.add("Shrink");
-  //     // element.classList.add("Hide");
-
-  //     wait(randomNumber(100, 500)).then(() => {
-  //       element.classList.add("Hide");
-
-  //       wait(randomNumber(300, 1000)).then(() => {
-  //         element.classList.remove("Hide");
-  //       });
-  //     });
-  //   });
-  // });
-};
 
 //EXPORTS:----------
 var _default = exports.default = HOME;
-},{"react":"node_modules/react/index.js","../styles/home.css":"styles/home.css","./scripts/wait":"src/scripts/wait.ts"}],"index.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","../styles/home.css":"styles/home.css","./scripts/Functions":"src/scripts/Functions.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -37017,7 +37015,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63644" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63307" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
