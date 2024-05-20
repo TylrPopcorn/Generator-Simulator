@@ -50,12 +50,13 @@ body {
 /* ------ TITLE ----- */
 #wrapper .title {
   margin-top: 2.8%;
-  font-size: 40px;
+  font-size: 2vw;
 }
 
 /* ------ header ----- */
 .heading {
   margin-top: -5px;
+  font-size: 1.5vw;
 }
 
 /* -------- BOX / BUTTONS ------- */
@@ -70,21 +71,22 @@ body {
   height: 75%;
 }
 
-.Letter_Option,
-.Number_Option,
-.Word_Option {
+#Letter_Option,
+#Number_Option,
+#Word_Option {
   position: relative;
 
-  margin-top: -10%;
   margin-left: 3%;
   margin-right: 3%;
   border-radius: 5%;
-
+  /* margin-top: -5%;
+   */
   cursor: pointer;
 
   width: calc(20% - 4%);
   min-width: 100px;
   height: 80%;
+  min-height: 150px;
 
   background: #000;
   color: rgba(255, 255, 255, 0.2);
@@ -102,9 +104,9 @@ body {
   opacity: 0;
 }
 
-.Letter_Option span,
-.Number_Option span,
-.Word_Option span {
+#Letter_Option span,
+#Number_Option span,
+#Word_Option span {
   position: absolute;
 
   height: 102%;
@@ -126,21 +128,21 @@ body {
   z-index: 1;
 }
 
-.Letter_Option span {
+#Letter_Option span {
   outline: 2px solid red;
 }
 
-.Number_Option span {
+#Number_Option span {
   outline: 2px solid rgb(0, 217, 255);
 }
 
-.Word_Option span {
+#Word_Option span {
   outline: 2px solid limegreen;
 }
 
-.Letter_Option::before,
-.Number_Option::before,
-.Word_Option::before {
+#Letter_Option::before,
+#Number_Option::before,
+#Word_Option::before {
   content: "";
   border-radius: 4%;
   position: absolute;
@@ -154,7 +156,7 @@ body {
   animation: animate 80s linear infinite;
 }
 
-.Letter_Option::before {
+#Letter_Option::before {
   background: linear-gradient(
     45deg,
     #000000,
@@ -181,7 +183,7 @@ body {
   );
 }
 
-.Number_Option::before {
+#Number_Option::before {
   background: linear-gradient(
     45deg,
     rgb(3, 230, 247),
@@ -195,7 +197,7 @@ body {
   );
 }
 
-.Word_Option::after {
+#Word_Option::after {
   background: linear-gradient(
     45deg,
     rgb(0, 255, 13),
@@ -211,7 +213,7 @@ body {
   box-shadow: 0 0 5vh rgba(0, 255, 13, 0.6);
 }
 
-.Number_Option::after {
+#Number_Option::after {
   background: linear-gradient(
     45deg,
     rgb(3, 230, 247),
@@ -227,7 +229,7 @@ body {
   box-shadow: 0 0 5vh rgba(0, 225, 255, 0.4);
 }
 
-.Letter_Option::after {
+#Letter_Option::after {
   background: linear-gradient(
     45deg,
     #000000,
@@ -254,9 +256,9 @@ body {
   box-shadow: 0 0 5vh rgba(255, 0, 0, 0.4);
 }
 
-.Letter_Option::after,
-.Word_Option::after,
-.Number_Option::after {
+#Letter_Option::after,
+#Word_Option::after,
+#Number_Option::after {
   content: "";
   border-radius: 4%;
   position: absolute;
@@ -272,25 +274,25 @@ body {
   animation: animate 80s linear infinite;
 }
 
-.Letter_Option:hover::before,
-.Letter_Option:hover::after,
-.Word_Option:hover::before,
-.Word_Option:hover::after,
-.Number_Option:hover::before,
-.Number_Option:hover::after {
+#Letter_Option:hover::before,
+#Letter_Option:hover::after,
+#Word_Option:hover::before,
+#Word_Option:hover::after,
+#Number_Option:hover::before,
+#Number_Option:hover::after {
   opacity: 1;
 }
 
-.Letter_Option:hover span,
-.Word_Option:hover span,
-.Number_Option:hover span {
+#Letter_Option:hover span,
+#Word_Option:hover span,
+#Number_Option:hover span {
   color: rgba(255, 255, 255, 1);
   border-radius: 5%;
 }
 
-.Letter_Option span::before,
-.Word_Option span::before,
-.Number_Option span::before {
+#Letter_Option span::before,
+#Word_Option span::before,
+#Number_Option span::before {
   content: "";
   position: absolute;
   border-radius: 5%;
@@ -302,13 +304,12 @@ body {
 }
 
 /* ----- bottom title ----*/
-.optionTitle {
-  margin-top: -1.8vw;
+#optionTitle {
   transition: 0.5s;
 }
 
 /* ----- info box -----*/
-.InfoBox {
+#InfoBox {
   margin-top: -5px;
 }
 
