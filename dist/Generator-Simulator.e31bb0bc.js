@@ -36850,9 +36850,9 @@ Functions["componentDidMount"] = function () {
 
   const randomNumber = Functions["getRandomNumber"];
   const elements = {
-    Letter: document.getElementsByClassName("Letter_Option")[0],
-    Number: document.getElementsByClassName("Number_Option")[0],
-    Word: document.getElementsByClassName("Word_Option")[0]
+    Letter: document.getElementById("Letter_Option"),
+    Number: document.getElementById("Number_Option"),
+    Word: document.getElementById("Word_Option")
   };
   //----
 
@@ -36883,6 +36883,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var _react = _interopRequireDefault(require("react"));
 require("../styles/home.css");
+var _wait = _interopRequireDefault(require("./scripts/wait"));
 var _Functions = _interopRequireDefault(require("./scripts/Functions"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 // THIS IS THE HOME SCREEN
@@ -36914,13 +36915,25 @@ class HOME extends _react.default.Component {
   MouseEnter = event => {
     const button = event.currentTarget;
     button.classList.remove("Shrink");
-    const optionTitle = document.getElementsByClassName("optionTitle")[0];
-    optionTitle.classList.remove("Hide");
+    console.log(event.target);
+    this.setState({
+      mouseEntered: true
+    });
+    (0, _wait.default)(900).then(() => {
+      //check if mouse still entered
+      if (this.state.mouseEntered === true) {
+        const optionTitle = document.getElementById("optionTitle");
+        optionTitle.classList.remove("Hide");
+      }
+    });
   };
   MouseLeave = event => {
     const button = event.currentTarget;
     button.classList.add("Shrink");
-    const optionTitle = document.getElementsByClassName("optionTitle")[0];
+    this.setState({
+      mouseEntered: false
+    });
+    const optionTitle = document.getElementById("optionTitle");
     optionTitle.classList.add("Hide");
   };
   componentDidMount() {
@@ -36940,22 +36953,27 @@ class HOME extends _react.default.Component {
     }, "Choose an option"), /*#__PURE__*/_react.default.createElement("div", {
       className: "boxOptions"
     }, /*#__PURE__*/_react.default.createElement("button", {
-      className: "Letter_Option Shrink",
+      id: "Letter_Option",
+      className: "Shrink",
       onMouseEnter: this.MouseEnter,
       onMouseLeave: this.MouseLeave
     }, /*#__PURE__*/_react.default.createElement("span", null)), /*#__PURE__*/_react.default.createElement("button", {
-      className: "Number_Option",
+      id: "Number_Option",
+      className: "",
       onMouseEnter: this.MouseEnter,
       onMouseLeave: this.MouseLeave
     }, /*#__PURE__*/_react.default.createElement("span", null)), /*#__PURE__*/_react.default.createElement("button", {
-      className: "Word_Option Shrink",
+      id: "Word_Option",
+      className: "Shrink",
       onMouseEnter: this.MouseEnter,
       onMouseLeave: this.MouseLeave
     }, /*#__PURE__*/_react.default.createElement("span", null))), /*#__PURE__*/_react.default.createElement("p", {
-      className: "optionTitle Hide"
+      id: "optionTitle",
+      className: "Hide"
     }, "TITLE"), /*#__PURE__*/_react.default.createElement("p", {
-      className: "InfoBox"
-    }, " INFORMATION "));
+      id: "InfoBox",
+      className: "Hide"
+    }, "INFORMATION "));
   }
 }
 //
@@ -36963,7 +36981,7 @@ class HOME extends _react.default.Component {
 
 //EXPORTS:----------
 var _default = exports.default = HOME;
-},{"react":"node_modules/react/index.js","../styles/home.css":"styles/home.css","./scripts/Functions":"src/scripts/Functions.js"}],"index.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","../styles/home.css":"styles/home.css","./scripts/wait":"src/scripts/wait.ts","./scripts/Functions":"src/scripts/Functions.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -37015,7 +37033,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63307" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51648" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

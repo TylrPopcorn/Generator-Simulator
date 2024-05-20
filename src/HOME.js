@@ -3,6 +3,7 @@ import React from "react";
 
 //imports:]--
 import "../styles/home.css";
+import wait from "./scripts/wait";
 import Functions from "./scripts/Functions";
 
 //vars:]--------
@@ -32,15 +33,23 @@ class HOME extends React.Component {
     const button = event.currentTarget;
     button.classList.remove("Shrink");
 
-    const optionTitle = document.getElementsByClassName("optionTitle")[0];
-    optionTitle.classList.remove("Hide");
+    console.log(event.target);
+    this.setState({ mouseEntered: true });
+    wait(900).then(() => {
+      //check if mouse still entered
+      if (this.state.mouseEntered === true) {
+        const optionTitle = document.getElementById("optionTitle");
+        optionTitle.classList.remove("Hide");
+      }
+    });
   };
 
   MouseLeave = (event) => {
     const button = event.currentTarget;
     button.classList.add("Shrink");
 
-    const optionTitle = document.getElementsByClassName("optionTitle")[0];
+    this.setState({ mouseEntered: false });
+    const optionTitle = document.getElementById("optionTitle");
     optionTitle.classList.add("Hide");
   };
 
@@ -61,29 +70,36 @@ class HOME extends React.Component {
         <p className="heading">Choose an option</p>
         <div className="boxOptions">
           <button
-            className="Letter_Option Shrink"
+            id="Letter_Option"
+            className="Shrink"
             onMouseEnter={this.MouseEnter}
             onMouseLeave={this.MouseLeave}
           >
             <span></span>
           </button>
           <button
-            className="Number_Option"
+            id="Number_Option"
+            className=""
             onMouseEnter={this.MouseEnter}
             onMouseLeave={this.MouseLeave}
           >
             <span></span>
           </button>
           <button
-            className="Word_Option Shrink"
+            id="Word_Option"
+            className="Shrink"
             onMouseEnter={this.MouseEnter}
             onMouseLeave={this.MouseLeave}
           >
             <span></span>
           </button>
         </div>
-        <p className="optionTitle Hide">TITLE</p>
-        <p className="InfoBox"> INFORMATION </p>
+        <p id="optionTitle" className="Hide">
+          TITLE
+        </p>
+        <p id="InfoBox" className="Hide">
+          INFORMATION {/* TODO */}
+        </p>
       </div>
     );
   }

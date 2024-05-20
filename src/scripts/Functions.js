@@ -38,9 +38,9 @@ Functions["componentDidMount"] = function () {
 
   const randomNumber = Functions["getRandomNumber"];
   const elements = {
-    Letter: document.getElementsByClassName("Letter_Option")[0],
-    Number: document.getElementsByClassName("Number_Option")[0],
-    Word: document.getElementsByClassName("Word_Option")[0],
+    Letter: document.getElementById("Letter_Option"),
+    Number: document.getElementById("Number_Option"),
+    Word: document.getElementById("Word_Option"),
   };
   //----
 
