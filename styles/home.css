@@ -22,13 +22,13 @@
 /* ------ TITLE ----- */
 #wrapper .title {
   margin-top: 2.8%;
-  font-size: 2vw;
+  font-size: clamp(16px, 1vw, 36px); /* min, preferred, max */
 }
 
 /* ------ header ----- */
 .heading {
-  margin-top: -5px;
-  font-size: 1.5vw;
+  margin-top: -0.3%;
+  font-size: clamp(12px, 0.5vw, 24px); /* min, preferred, max */
 }
 
 /* -------- BOX / BUTTONS ------- */
@@ -40,7 +40,7 @@
   justify-content: center;
 
   width: 30%;
-  height: 75%;
+  height: 65%;
 }
 
 #Letter_Option,
@@ -51,24 +51,25 @@
   margin-left: 3%;
   margin-right: 3%;
   border-radius: 5%;
-  /* margin-top: -5%;
-   */
+  /* margin-top: -5%; */
+
   cursor: pointer;
 
   width: calc(20% - 4%);
-  min-width: 100px;
+  min-width: 90px;
   height: 80%;
-  min-height: 150px;
+  min-height: 100px;
+  /* max-height: 400px; */
 
   background: #000;
   color: rgba(255, 255, 255, 0.2);
 
   transition: 0.5s;
-
-  font-size: 1.5rem;
 }
 
-.Shrink {
+#Letter_Option.Shrink,
+#Number_Option.Shrink,
+#Word_Option.Shrink {
   height: 70%;
 }
 
@@ -277,6 +278,7 @@
 
 /* ----- bottom title ----*/
 #optionTitle {
+  margin-top: -1%;
   transition: 0.5s;
 }
 
