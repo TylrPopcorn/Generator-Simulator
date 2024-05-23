@@ -33,7 +33,10 @@ class HOME extends React.Component {
     const button = event.currentTarget;
     button.classList.remove("Shrink");
 
-    console.log(event.target);
+    const heading = document.getElementsByClassName("title")[0];
+    const buttonNumber = event.currentTarget.classList[0];
+    heading.classList.add("option_" + buttonNumber);
+
     this.setState({ mouseEntered: true });
     wait(900).then(() => {
       //check if mouse still entered
@@ -47,6 +50,10 @@ class HOME extends React.Component {
   MouseLeave = (event) => {
     const button = event.currentTarget;
     button.classList.add("Shrink");
+
+    const heading = document.getElementsByClassName("title")[0];
+    const buttonNumber = event.currentTarget.classList[0];
+    heading.classList.remove("option_" + buttonNumber);
 
     this.setState({ mouseEntered: false });
     const optionTitle = document.getElementById("optionTitle");
@@ -62,7 +69,7 @@ class HOME extends React.Component {
     return (
       <div id="wrapper" className="App">
         {/*---- TITLE ----*/}
-        <h1 className="title" data-text={Vars.TITLE}>
+        <h1 className="title option_1" data-text={Vars.TITLE}>
           {Vars.TITLE}
         </h1>
 
@@ -71,7 +78,7 @@ class HOME extends React.Component {
         <div className="boxOptions">
           <button
             id="Letter_Option"
-            className="Shrink"
+            className="Shrink 1"
             onMouseEnter={this.MouseEnter}
             onMouseLeave={this.MouseLeave}
           >
@@ -79,7 +86,7 @@ class HOME extends React.Component {
           </button>
           <button
             id="Number_Option"
-            className=""
+            className="2"
             onMouseEnter={this.MouseEnter}
             onMouseLeave={this.MouseLeave}
           >
@@ -87,7 +94,7 @@ class HOME extends React.Component {
           </button>
           <button
             id="Word_Option"
-            className="Shrink"
+            className="Shrink 3"
             onMouseEnter={this.MouseEnter}
             onMouseLeave={this.MouseLeave}
           >

@@ -36915,7 +36915,9 @@ class HOME extends _react.default.Component {
   MouseEnter = event => {
     const button = event.currentTarget;
     button.classList.remove("Shrink");
-    console.log(event.target);
+    const heading = document.getElementsByClassName("title")[0];
+    const buttonNumber = event.currentTarget.classList[0];
+    heading.classList.add("option_" + buttonNumber);
     this.setState({
       mouseEntered: true
     });
@@ -36930,6 +36932,9 @@ class HOME extends _react.default.Component {
   MouseLeave = event => {
     const button = event.currentTarget;
     button.classList.add("Shrink");
+    const heading = document.getElementsByClassName("title")[0];
+    const buttonNumber = event.currentTarget.classList[0];
+    heading.classList.remove("option_" + buttonNumber);
     this.setState({
       mouseEntered: false
     });
@@ -36946,7 +36951,7 @@ class HOME extends _react.default.Component {
       id: "wrapper",
       className: "App"
     }, /*#__PURE__*/_react.default.createElement("h1", {
-      className: "title",
+      className: "title option_1",
       "data-text": Vars.TITLE
     }, Vars.TITLE), /*#__PURE__*/_react.default.createElement("p", {
       className: "heading"
@@ -36954,17 +36959,17 @@ class HOME extends _react.default.Component {
       className: "boxOptions"
     }, /*#__PURE__*/_react.default.createElement("button", {
       id: "Letter_Option",
-      className: "Shrink",
+      className: "Shrink 1",
       onMouseEnter: this.MouseEnter,
       onMouseLeave: this.MouseLeave
     }, /*#__PURE__*/_react.default.createElement("span", null)), /*#__PURE__*/_react.default.createElement("button", {
       id: "Number_Option",
-      className: "",
+      className: "2",
       onMouseEnter: this.MouseEnter,
       onMouseLeave: this.MouseLeave
     }, /*#__PURE__*/_react.default.createElement("span", null)), /*#__PURE__*/_react.default.createElement("button", {
       id: "Word_Option",
-      className: "Shrink",
+      className: "Shrink 3",
       onMouseEnter: this.MouseEnter,
       onMouseLeave: this.MouseLeave
     }, /*#__PURE__*/_react.default.createElement("span", null))), /*#__PURE__*/_react.default.createElement("p", {
@@ -37033,7 +37038,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61216" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59825" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

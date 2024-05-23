@@ -27,6 +27,7 @@ body {
 }
 
 /* ALL of 'HOME' related styling*/
+/* ---[ VARIABLES ]---*/
 
 /* ---[ KEYFRAMES ]---*/
 @keyframes animate {
@@ -41,6 +42,19 @@ body {
   }
 }
 
+@keyframes glowing {
+  /* Responsible for making the title glow effect*/
+  0% {
+    text-shadow: 0px 0px 18px red;
+  }
+  50% {
+    text-shadow: 0px 0px 30px red;
+  }
+  100% {
+    text-shadow: 0px 0px 18px red;
+  }
+}
+
 /*--------[ BODY ]------------*/
 #wrapper {
   background-color: rgb(4, 4, 4);
@@ -51,6 +65,25 @@ body {
 #wrapper .title {
   margin-top: 2.8%;
   font-size: clamp(16px, 1vw, 36px); /* min, preferred, max */
+  font-weight: bold;
+
+  -webkit-text-stroke: 0.1px red;
+  text-shadow: 0px 0px 9px red;
+  animation: glowing 8s infinite; /* Adjust the duration as needed */
+
+  transition: 0.8s;
+}
+
+.title.option_1 {
+  color: red;
+}
+
+.title.option_2 {
+  color: cyan;
+}
+
+.title.option_3 {
+  color: green;
 }
 
 /* ------ header ----- */
