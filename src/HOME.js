@@ -7,7 +7,7 @@ import wait from "./scripts/wait";
 import Functions from "./scripts/Functions";
 
 //vars:]--------
-let Vars = {
+let vars = {
   TITLE: "GENERATOR SIMULATOR" /* Change the title to whatever */,
 
   //--add more variables here:--
@@ -30,12 +30,7 @@ class HOME extends React.Component {
   }
 
   MouseEnter = (event) => {
-    const button = event.currentTarget;
-    button.classList.remove("Shrink");
-
-    const heading = document.getElementsByClassName("title")[0];
-    const buttonNumber = event.currentTarget.classList[0];
-    heading.classList.add("option_" + buttonNumber);
+    Functions.mouse["Entered"](event);
 
     this.setState({ mouseEntered: true });
     wait(900).then(() => {
@@ -48,16 +43,8 @@ class HOME extends React.Component {
   };
 
   MouseLeave = (event) => {
-    const button = event.currentTarget;
-    button.classList.add("Shrink");
-
-    const heading = document.getElementsByClassName("title")[0];
-    const buttonNumber = event.currentTarget.classList[0];
-    heading.classList.remove("option_" + buttonNumber);
-
+    Functions.mouse["Left"](event);
     this.setState({ mouseEntered: false });
-    const optionTitle = document.getElementById("optionTitle");
-    optionTitle.classList.add("Hide");
   };
 
   componentDidMount() {
@@ -69,8 +56,8 @@ class HOME extends React.Component {
     return (
       <div id="wrapper" className="App">
         {/*---- TITLE ----*/}
-        <h1 className="title option_1" data-text={Vars.TITLE}>
-          {Vars.TITLE}
+        <h1 className="title option_1" data-text={vars.TITLE}>
+          {vars.TITLE}
         </h1>
 
         {/*----------*/}
