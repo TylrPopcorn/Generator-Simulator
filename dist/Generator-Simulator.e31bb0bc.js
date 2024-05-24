@@ -36870,6 +36870,46 @@ Functions["componentDidMount"] = function () {
     Functions["showButtons"](elements);
   });
 };
+
+//
+//
+
+Functions["mouse"] = {
+  //mouse related items.
+  //====================================
+
+  Entered: function (event) {
+    //each time the mouse enters a button.
+    //====================================
+    const button = event.currentTarget;
+    button.classList.remove("Shrink");
+    const heading = document.getElementsByClassName("title")[0];
+    const removeClasses = ["option_1", "option_2", "option_3"];
+
+    //remove any previous classes of other options:
+    removeClasses.forEach(cls => {
+      if (heading.classList.contains(cls)) {
+        heading.classList.remove(cls);
+      }
+    });
+
+    //add corresponding button option number
+    const buttonNumber = event.currentTarget.classList[0];
+    heading.classList.add("option_" + buttonNumber);
+  },
+  Left: function (event) {
+    //Each time the mouse leaves a button.
+    //====================================
+    const button = event.currentTarget;
+    button.classList.add("Shrink");
+    const heading = document.getElementsByClassName("title")[0];
+    const buttonNumber = event.currentTarget.classList[0];
+    heading.classList.remove("option_" + buttonNumber);
+    const optionTitle = document.getElementById("optionTitle");
+    optionTitle.classList.add("Hide");
+  }
+};
+
 //----------------                  ------------------------------                      ----------------------------
 
 //-----[ EXPORTS ]: --]
@@ -36891,7 +36931,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //imports:]--
 
 //vars:]--------
-let Vars = {
+let vars = {
   TITLE: "GENERATOR SIMULATOR" /* Change the title to whatever */
 
   //--add more variables here:--
@@ -36913,11 +36953,7 @@ class HOME extends _react.default.Component {
     };
   }
   MouseEnter = event => {
-    const button = event.currentTarget;
-    button.classList.remove("Shrink");
-    const heading = document.getElementsByClassName("title")[0];
-    const buttonNumber = event.currentTarget.classList[0];
-    heading.classList.add("option_" + buttonNumber);
+    _Functions.default.mouse["Entered"](event);
     this.setState({
       mouseEntered: true
     });
@@ -36930,16 +36966,10 @@ class HOME extends _react.default.Component {
     });
   };
   MouseLeave = event => {
-    const button = event.currentTarget;
-    button.classList.add("Shrink");
-    const heading = document.getElementsByClassName("title")[0];
-    const buttonNumber = event.currentTarget.classList[0];
-    heading.classList.remove("option_" + buttonNumber);
+    _Functions.default.mouse["Left"](event);
     this.setState({
       mouseEntered: false
     });
-    const optionTitle = document.getElementById("optionTitle");
-    optionTitle.classList.add("Hide");
   };
   componentDidMount() {
     _Functions.default["componentDidMount"]();
@@ -36952,8 +36982,8 @@ class HOME extends _react.default.Component {
       className: "App"
     }, /*#__PURE__*/_react.default.createElement("h1", {
       className: "title option_1",
-      "data-text": Vars.TITLE
-    }, Vars.TITLE), /*#__PURE__*/_react.default.createElement("p", {
+      "data-text": vars.TITLE
+    }, vars.TITLE), /*#__PURE__*/_react.default.createElement("p", {
       className: "heading"
     }, "Choose an option"), /*#__PURE__*/_react.default.createElement("div", {
       className: "boxOptions"
@@ -37038,7 +37068,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59825" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63469" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

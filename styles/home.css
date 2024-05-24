@@ -1,5 +1,12 @@
 /* ALL of 'HOME' related styling*/
+/**/
+/**/
+
 /* ---[ VARIABLES ]---*/
+:root {
+  --option1: rgb(255, 0, 0);
+  --option1_accent: rgb(128, 2, 2);
+}
 
 /* ---[ KEYFRAMES ]---*/
 @keyframes animate {
@@ -47,7 +54,7 @@
 }
 
 .title.option_1 {
-  color: red;
+  color: var(--option1);
 }
 
 .title.option_2 {
