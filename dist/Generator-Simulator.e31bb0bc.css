@@ -34,6 +34,12 @@ body {
 :root {
   --option1: rgb(255, 0, 0);
   --option1_accent: rgb(128, 2, 2);
+
+  --option2: rgb(0, 174, 255);
+  --option2_accent: rgb(2, 92, 128);
+
+  --option3: rgb(21, 255, 0);
+  --option3_accent: rgb(6, 128, 2);
 }
 
 /* ---[ KEYFRAMES ]---*/
@@ -52,16 +58,31 @@ body {
 @keyframes glowing {
   /* Responsible for making the title glow effect*/
   0% {
-    text-shadow: 0px 0px 18px red;
+    text-shadow: 0px 0px 18px;
   }
   50% {
-    text-shadow: 0px 0px 30px red;
+    text-shadow: 0px 0px 30px;
   }
   100% {
-    text-shadow: 0px 0px 18px red;
+    text-shadow: 0px 0px 18px;
   }
 }
 
+@keyframes colorChange {
+  /* Responsible for making the title change colors */
+  0% {
+    color: var(--option1);
+  }
+  33% {
+    color: var(--option2);
+  }
+  66% {
+    color: var(--option3);
+  }
+  100% {
+    color: var(--option1);
+  }
+}
 /*--------[ BODY ]------------*/
 #wrapper {
   background-color: rgb(4, 4, 4);
@@ -74,29 +95,36 @@ body {
   font-size: clamp(16px, 1vw, 36px); /* min, preferred, max */
   font-weight: bold;
 
-  -webkit-text-stroke: 0.1px red;
-  text-shadow: 0px 0px 9px red;
-  animation: glowing 8s infinite; /* Adjust the duration as needed */
+  -webkit-text-stroke: 0.1px rgb(0, 0, 0);
+  text-shadow: 0px 0px 9px rgb(255, 255, 255);
 
   transition: 0.8s;
 }
 
+.title.colorAnimation {
+  /* animation: colorChange 12s infinite;   */
+  animation: colorChange 14s infinite linear, glowing 7s infinite ease-in-out; /* Combine animations */
+}
+
 .title.option_1 {
+  animation: glowing 7s infinite;
   color: var(--option1);
 }
 
 .title.option_2 {
-  color: cyan;
+  animation: glowing 5s infinite;
+  color: var(--option2);
 }
 
 .title.option_3 {
-  color: green;
+  animation: glowing 9s infinite;
+  color: var(--option3);
 }
 
 /* ------ header ----- */
 .heading {
   margin-top: -0.3%;
-  font-size: clamp(12px, 0.5vw, 24px); /* min, preferred, max */
+  font-size: clamp(11px, 0.5vw, 24px); /* min, preferred, max */
 }
 
 /* -------- BOX / BUTTONS ------- */
@@ -152,7 +180,7 @@ body {
 
   height: 102%;
   width: 103%;
-  background: grey;
+  background: rgb(0, 0, 0);
   margin-left: -3%;
   margin-top: -4%;
 
@@ -164,21 +192,20 @@ body {
 
   text-align: center;
 
-  color: rgba(241, 240, 240, 0.2);
   transition: 0.5s;
   z-index: 1;
 }
 
 #Letter_Option span {
-  outline: 2px solid red;
+  outline: 2px solid var(--option1);
 }
 
 #Number_Option span {
-  outline: 2px solid rgb(0, 217, 255);
+  outline: 2px solid var(--option2);
 }
 
 #Word_Option span {
-  outline: 2px solid limegreen;
+  outline: 2px solid var(--option3);
 }
 
 #Letter_Option::before,
@@ -204,18 +231,18 @@ body {
     #000000,
     #000000,
     #000000,
-    #7d0000,
-    #a60000,
+    var(--option1_accent),
+    var(--option1_accent),
     #000000,
     #000000,
-    #ff0000,
+    var(--option1),
     #000000,
     #000000,
     #000000,
-    #e60000,
-    #cc0000,
-    #a60000,
-    #7d0000,
+    var(--option1),
+    var(--option1),
+    var(--option1_accent),
+    var(--option1_accent),
     #000000,
     #000000,
     #000000,
@@ -227,13 +254,13 @@ body {
 #Number_Option::before {
   background: linear-gradient(
     45deg,
-    rgb(3, 230, 247),
+    var(--option2),
     #000,
-    rgb(3, 230, 247),
+    var(--option2),
     #000,
-    rgb(3, 230, 247),
+    var(--option2),
     #000,
-    rgb(3, 230, 247),
+    var(--option2),
     #000
   );
 }
@@ -241,33 +268,33 @@ body {
 #Word_Option::after {
   background: linear-gradient(
     45deg,
-    rgb(0, 255, 13),
+    var(--option3),
     #000,
-    rgb(0, 255, 13),
+    var(--option3),
     #000,
     #000,
     #000,
-    rgb(0, 255, 13),
+    var(--option3),
     #000
   );
 
-  box-shadow: 0 0 5vh rgba(0, 255, 13, 0.6);
+  box-shadow: 0 0 5vh rgba(var(--option3), 0.6);
 }
 
 #Number_Option::after {
   background: linear-gradient(
     45deg,
-    rgb(3, 230, 247),
+    var(--option2),
     #000,
-    rgb(3, 230, 247),
+    var(--option2),
     #000,
-    rgb(3, 230, 247),
+    var(--option2),
     #000,
-    rgb(3, 230, 247),
+    var(--option2),
     #000
   );
 
-  box-shadow: 0 0 5vh rgba(0, 225, 255, 0.4);
+  box-shadow: 0 0 5vh rgba(var(--option2), 0.6);
 }
 
 #Letter_Option::after {
@@ -277,24 +304,26 @@ body {
     #000000,
     #000000,
     #000000,
-    #7d0000,
-    #a60000,
+    var(--option1_accent),
+    var(--option1_accent),
     #000000,
     #000000,
-    #ff0000,
+    var(--option1),
     #000000,
     #000000,
-    #e60000,
-    #cc0000,
-    #a60000,
-    #7d0000,
+    #000000,
+    var(--option1),
+    var(--option1),
+    var(--option1_accent),
+    var(--option1_accent),
+    #000000,
     #000000,
     #000000,
     #000000,
     #000000
   );
 
-  box-shadow: 0 0 5vh rgba(255, 0, 0, 0.4);
+  box-shadow: 0 0 5vh rgba(var(--option1), 0.6);
 }
 
 #Letter_Option::after,

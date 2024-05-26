@@ -4,7 +4,10 @@
 import wait from "./wait";
 
 //--[ VARIABLES ]:--
-let Functions = {};
+const vars = {
+  firstEntrance: false, //variable to stop heading color changing at first instance
+};
+const Functions = {};
 
 //----------------                  ------------------------------                      ----------------------------
 //----------------                  ------------------------------                      ----------------------------
@@ -44,6 +47,7 @@ Functions["componentDidMount"] = function () {
   };
   //----
 
+  //----HIDE BUTTONS FX---\\
   for (let button in elements) {
     //Loop through elements
     const correspondant = elements[button];
@@ -56,10 +60,24 @@ Functions["componentDidMount"] = function () {
     });
   }
 
+  //---SHOW BUTTONS FX---\\
   wait(randomNumber(500, 900)).then(() => {
     //Wait then show elements
     Functions["showButtons"](elements);
   });
+
+  //---HEADING COLOR LOOP FX----\\
+  const heading = document.getElementsByClassName("title")[0];
+  if (vars.firstEntrance == false) {
+    heading.classList.add("colorAnimation");
+
+    let Loop;
+    Loop = setInterval(() => {
+      if (vars.firstEntrance == true) {
+        heading.classList.remove("colorAnimation");
+      }
+    }, 200);
+  }
 };
 
 //
@@ -77,6 +95,8 @@ Functions["mouse"] = {
 
     const heading = document.getElementsByClassName("title")[0];
     const removeClasses = ["option_1", "option_2", "option_3"];
+
+    vars.firstEntrance = true;
 
     //remove any previous classes of other options:
     removeClasses.forEach((cls) => {
@@ -96,9 +116,9 @@ Functions["mouse"] = {
     const button = event.currentTarget;
     button.classList.add("Shrink");
 
-    const heading = document.getElementsByClassName("title")[0];
-    const buttonNumber = event.currentTarget.classList[0];
-    heading.classList.remove("option_" + buttonNumber);
+    // const heading = document.getElementsByClassName("title")[0];
+    // const buttonNumber = event.currentTarget.classList[0];
+    // heading.classList.remove("option_" + buttonNumber);
 
     const optionTitle = document.getElementById("optionTitle");
     optionTitle.classList.add("Hide");
