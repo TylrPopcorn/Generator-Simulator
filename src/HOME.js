@@ -56,7 +56,7 @@ class HOME extends React.Component {
     return (
       <div id="wrapper" className="App">
         {/*---- TITLE ----*/}
-        <h1 className="title option_1" data-text={vars.TITLE}>
+        <h1 className="title" data-text={vars.TITLE}>
           {vars.TITLE}
         </h1>
 

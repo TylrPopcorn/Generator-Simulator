@@ -36817,7 +36817,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //--[ IMPORTS ]:--
 
 //--[ VARIABLES ]:--
-let Functions = {};
+const vars = {
+  firstEntrance: false //variable to stop heading color changing at first instance
+};
+const Functions = {};
 
 //----------------                  ------------------------------                      ----------------------------
 //----------------                  ------------------------------                      ----------------------------
@@ -36856,6 +36859,7 @@ Functions["componentDidMount"] = function () {
   };
   //----
 
+  //----HIDE BUTTONS FX---\\
   for (let button in elements) {
     //Loop through elements
     const correspondant = elements[button];
@@ -36865,10 +36869,24 @@ Functions["componentDidMount"] = function () {
       correspondant.classList.add("Hide");
     });
   }
+
+  //---SHOW BUTTONS FX---\\
   (0, _wait.default)(randomNumber(500, 900)).then(() => {
     //Wait then show elements
     Functions["showButtons"](elements);
   });
+
+  //---HEADING COLOR LOOP FX----\\
+  const heading = document.getElementsByClassName("title")[0];
+  if (vars.firstEntrance == false) {
+    heading.classList.add("colorAnimation");
+    let Loop;
+    Loop = setInterval(() => {
+      if (vars.firstEntrance == true) {
+        heading.classList.remove("colorAnimation");
+      }
+    }, 200);
+  }
 };
 
 //
@@ -36885,6 +36903,7 @@ Functions["mouse"] = {
     button.classList.remove("Shrink");
     const heading = document.getElementsByClassName("title")[0];
     const removeClasses = ["option_1", "option_2", "option_3"];
+    vars.firstEntrance = true;
 
     //remove any previous classes of other options:
     removeClasses.forEach(cls => {
@@ -36902,9 +36921,11 @@ Functions["mouse"] = {
     //====================================
     const button = event.currentTarget;
     button.classList.add("Shrink");
-    const heading = document.getElementsByClassName("title")[0];
-    const buttonNumber = event.currentTarget.classList[0];
-    heading.classList.remove("option_" + buttonNumber);
+
+    // const heading = document.getElementsByClassName("title")[0];
+    // const buttonNumber = event.currentTarget.classList[0];
+    // heading.classList.remove("option_" + buttonNumber);
+
     const optionTitle = document.getElementById("optionTitle");
     optionTitle.classList.add("Hide");
   }
@@ -36981,7 +37002,7 @@ class HOME extends _react.default.Component {
       id: "wrapper",
       className: "App"
     }, /*#__PURE__*/_react.default.createElement("h1", {
-      className: "title option_1",
+      className: "title",
       "data-text": vars.TITLE
     }, vars.TITLE), /*#__PURE__*/_react.default.createElement("p", {
       className: "heading"
@@ -37068,7 +37089,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63469" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51641" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
