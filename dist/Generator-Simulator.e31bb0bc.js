@@ -36851,6 +36851,12 @@ Functions["showButtons"] = async function (elements) {
 Functions["componentDidMount"] = function () {
   //useEffect() function. Will run after the home page mounts.
 
+  //-----heading------\\
+  const heading = document.getElementsByClassName("heading")[0];
+  heading.classList.add("Hide");
+  (0, _wait.default)(2200).then(() => {
+    heading.classList.remove("Hide");
+  });
   const randomNumber = Functions["getRandomNumber"];
   const elements = {
     Letter: document.getElementById("Letter_Option"),
@@ -36876,14 +36882,14 @@ Functions["componentDidMount"] = function () {
     Functions["showButtons"](elements);
   });
 
-  //---HEADING COLOR LOOP FX----\\
-  const heading = document.getElementsByClassName("title")[0];
+  //---Title COLOR LOOP FX----\\
+  const title = document.getElementsByClassName("title")[0];
   if (vars.firstEntrance == false) {
-    heading.classList.add("colorAnimation");
+    title.classList.add("colorAnimation");
     let Loop;
     Loop = setInterval(() => {
       if (vars.firstEntrance == true) {
-        heading.classList.remove("colorAnimation");
+        title.classList.remove("colorAnimation");
       }
     }, 200);
   }
@@ -37089,7 +37095,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51641" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58025" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

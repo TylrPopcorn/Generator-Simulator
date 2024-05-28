@@ -73,10 +73,10 @@ body {
   0% {
     color: var(--option1);
   }
-  33% {
+  40% {
     color: var(--option2);
   }
-  66% {
+  80% {
     color: var(--option3);
   }
   100% {
@@ -103,7 +103,7 @@ body {
 
 .title.colorAnimation {
   /* animation: colorChange 12s infinite;   */
-  animation: colorChange 14s infinite linear, glowing 7s infinite ease-in-out; /* Combine animations */
+  animation: colorChange 17s infinite linear, glowing 7s infinite ease-in-out; /* Combine animations */
 }
 
 .title.option_1 {
@@ -124,7 +124,9 @@ body {
 /* ------ header ----- */
 .heading {
   margin-top: -0.3%;
-  font-size: clamp(11px, 0.5vw, 24px); /* min, preferred, max */
+  font-size: clamp(11px, 0.47vw, 22px); /* min, preferred, max */
+
+  transition: 0.8s;
 }
 
 /* -------- BOX / BUTTONS ------- */
