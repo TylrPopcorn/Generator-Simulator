@@ -30,6 +30,9 @@ class HOME extends React.Component {
   }
 
   MouseEnter = (event) => {
+    //Each time the mouse enters
+    const button = event.currentTarget;
+
     Functions.mouse["Entered"](event);
 
     this.setState({ mouseEntered: true });
@@ -37,6 +40,8 @@ class HOME extends React.Component {
       //check if mouse still entered
       if (this.state.mouseEntered === true) {
         const optionTitle = document.getElementById("optionTitle");
+
+        optionTitle.classList.add(button.id);
         optionTitle.classList.remove("Hide");
       }
     });
@@ -88,10 +93,10 @@ class HOME extends React.Component {
             <span></span>
           </button>
         </div>
-        <p id="optionTitle" className="Hide">
+        <p id="optionTitle" className="">
           TITLE
         </p>
-        <p id="InfoBox" className="Hide">
+        <p id="InfoBox" className="">
           INFORMATION {/* TODO */}
         </p>
       </div>

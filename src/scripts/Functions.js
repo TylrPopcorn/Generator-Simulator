@@ -47,6 +47,11 @@ Functions["componentDidMount"] = function () {
     heading.classList.remove("Hide");
   });
 
+  //----- bottom option title----\\
+  const optionTitle = document.getElementById("optionTitle");
+  // optionTitle.classList.add("Hide");
+
+  //----HIDE BUTTONS FX---\\
   const randomNumber = Functions["getRandomNumber"];
   const elements = {
     Letter: document.getElementById("Letter_Option"),
@@ -54,8 +59,6 @@ Functions["componentDidMount"] = function () {
     Word: document.getElementById("Word_Option"),
   };
   //----
-
-  //----HIDE BUTTONS FX---\\
   for (let button in elements) {
     //Loop through elements
     const correspondant = elements[button];
@@ -129,7 +132,11 @@ Functions["mouse"] = {
     // heading.classList.remove("option_" + buttonNumber);
 
     const optionTitle = document.getElementById("optionTitle");
-    optionTitle.classList.add("Hide");
+    // Remove all classes one by one
+    while (optionTitle.classList.length > 0) {
+      optionTitle.classList.remove(optionTitle.classList.item(0));
+    }
+    optionTitle.classList.add("Hide"); //TODO add me back
   },
 };
 

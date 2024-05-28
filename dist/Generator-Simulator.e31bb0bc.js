@@ -36857,6 +36857,12 @@ Functions["componentDidMount"] = function () {
   (0, _wait.default)(2200).then(() => {
     heading.classList.remove("Hide");
   });
+
+  //----- bottom option title----\\
+  const optionTitle = document.getElementById("optionTitle");
+  // optionTitle.classList.add("Hide");
+
+  //----HIDE BUTTONS FX---\\
   const randomNumber = Functions["getRandomNumber"];
   const elements = {
     Letter: document.getElementById("Letter_Option"),
@@ -36864,8 +36870,6 @@ Functions["componentDidMount"] = function () {
     Word: document.getElementById("Word_Option")
   };
   //----
-
-  //----HIDE BUTTONS FX---\\
   for (let button in elements) {
     //Loop through elements
     const correspondant = elements[button];
@@ -36933,7 +36937,11 @@ Functions["mouse"] = {
     // heading.classList.remove("option_" + buttonNumber);
 
     const optionTitle = document.getElementById("optionTitle");
-    optionTitle.classList.add("Hide");
+    // Remove all classes one by one
+    while (optionTitle.classList.length > 0) {
+      optionTitle.classList.remove(optionTitle.classList.item(0));
+    }
+    optionTitle.classList.add("Hide"); //TODO add me back
   }
 };
 
@@ -36980,6 +36988,8 @@ class HOME extends _react.default.Component {
     };
   }
   MouseEnter = event => {
+    //Each time the mouse enters
+    const button = event.currentTarget;
     _Functions.default.mouse["Entered"](event);
     this.setState({
       mouseEntered: true
@@ -36988,6 +36998,7 @@ class HOME extends _react.default.Component {
       //check if mouse still entered
       if (this.state.mouseEntered === true) {
         const optionTitle = document.getElementById("optionTitle");
+        optionTitle.classList.add(button.id);
         optionTitle.classList.remove("Hide");
       }
     });
@@ -37031,10 +37042,10 @@ class HOME extends _react.default.Component {
       onMouseLeave: this.MouseLeave
     }, /*#__PURE__*/_react.default.createElement("span", null))), /*#__PURE__*/_react.default.createElement("p", {
       id: "optionTitle",
-      className: "Hide"
+      className: ""
     }, "TITLE"), /*#__PURE__*/_react.default.createElement("p", {
       id: "InfoBox",
-      className: "Hide"
+      className: ""
     }, "INFORMATION "));
   }
 }
@@ -37095,7 +37106,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58025" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51279" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
