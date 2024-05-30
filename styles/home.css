@@ -373,5 +373,22 @@
 
 /* ----- info box -----*/
 #InfoBox {
-  margin-top: -5px;
+  margin-top: -0.5%;
+  transition: 0.6s;
+
+  font-style: italic;
+
+  font-size: clamp(15px, 0.5vw, 20px);
+}
+
+#InfoBox.Letter_Option {
+  color: var(--option1);
+}
+
+#InfoBox.Number_Option {
+  color: var(--option2);
+}
+
+#InfoBox.Word_Option {
+  color: var(--option3);
 }
