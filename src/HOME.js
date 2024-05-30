@@ -26,6 +26,8 @@ class HOME extends React.Component {
 
     this.state = {
       mouseEntered: false, //used to determine if the mouse has enetered a button or not.
+
+      mouseEvent: "", //Used for mouse title option debounce
     };
   }
 
@@ -35,21 +37,28 @@ class HOME extends React.Component {
 
     Functions.mouse["Entered"](event);
 
-    this.setState({ mouseEntered: true });
+    this.setState({ mouseEntered: true, mouseEvent: button.id });
+
     wait(900).then(() => {
       //check if mouse still entered
       if (this.state.mouseEntered === true) {
         const optionTitle = document.getElementById("optionTitle");
+        const infotext = document.getElementById("InfoBox");
 
-        optionTitle.classList.add(button.id);
-        optionTitle.classList.remove("Hide");
+        if (this.state.mouseEvent === button.id) {
+          optionTitle.classList.add(button.id);
+          optionTitle.classList.remove("Hide");
+
+          infotext.classList.remove("Hide");
+          infotext.classList.add(button.id);
+        }
       }
     });
   };
 
   MouseLeave = (event) => {
-    Functions.mouse["Left"](event);
     this.setState({ mouseEntered: false });
+    Functions.mouse["Left"](event);
   };
 
   componentDidMount() {

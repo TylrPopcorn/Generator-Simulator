@@ -36862,6 +36862,10 @@ Functions["componentDidMount"] = function () {
   const optionTitle = document.getElementById("optionTitle");
   // optionTitle.classList.add("Hide");
 
+  //---bottom info text----\\
+  const infotext = document.getElementById("InfoBox");
+  // infotext.classList.add("Hide");
+
   //----HIDE BUTTONS FX---\\
   const randomNumber = Functions["getRandomNumber"];
   const elements = {
@@ -36937,11 +36941,18 @@ Functions["mouse"] = {
     // heading.classList.remove("option_" + buttonNumber);
 
     const optionTitle = document.getElementById("optionTitle");
+
     // Remove all classes one by one
     while (optionTitle.classList.length > 0) {
       optionTitle.classList.remove(optionTitle.classList.item(0));
     }
-    optionTitle.classList.add("Hide"); //TODO add me back
+    optionTitle.classList.add("Hide");
+    const infotext = document.getElementById("InfoBox");
+    // Remove all classes one by one
+    while (infotext.classList.length > 0) {
+      infotext.classList.remove(infotext.classList.item(0));
+    }
+    infotext.classList.add("Hide");
   }
 };
 
@@ -36984,7 +36995,10 @@ class HOME extends _react.default.Component {
     super(props); // Allow access to 'this.props'
 
     this.state = {
-      mouseEntered: false //used to determine if the mouse has enetered a button or not.
+      mouseEntered: false,
+      //used to determine if the mouse has enetered a button or not.
+
+      mouseEvent: "" //Used for mouse title option debounce
     };
   }
   MouseEnter = event => {
@@ -36992,22 +37006,28 @@ class HOME extends _react.default.Component {
     const button = event.currentTarget;
     _Functions.default.mouse["Entered"](event);
     this.setState({
-      mouseEntered: true
+      mouseEntered: true,
+      mouseEvent: button.id
     });
     (0, _wait.default)(900).then(() => {
       //check if mouse still entered
       if (this.state.mouseEntered === true) {
         const optionTitle = document.getElementById("optionTitle");
-        optionTitle.classList.add(button.id);
-        optionTitle.classList.remove("Hide");
+        const infotext = document.getElementById("InfoBox");
+        if (this.state.mouseEvent === button.id) {
+          optionTitle.classList.add(button.id);
+          optionTitle.classList.remove("Hide");
+          infotext.classList.remove("Hide");
+          infotext.classList.add(button.id);
+        }
       }
     });
   };
   MouseLeave = event => {
-    _Functions.default.mouse["Left"](event);
     this.setState({
       mouseEntered: false
     });
+    _Functions.default.mouse["Left"](event);
   };
   componentDidMount() {
     _Functions.default["componentDidMount"]();
@@ -37106,7 +37126,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51279" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60296" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

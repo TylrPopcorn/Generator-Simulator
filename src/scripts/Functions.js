@@ -51,6 +51,10 @@ Functions["componentDidMount"] = function () {
   const optionTitle = document.getElementById("optionTitle");
   // optionTitle.classList.add("Hide");
 
+  //---bottom info text----\\
+  const infotext = document.getElementById("InfoBox");
+  // infotext.classList.add("Hide");
+
   //----HIDE BUTTONS FX---\\
   const randomNumber = Functions["getRandomNumber"];
   const elements = {
@@ -132,11 +136,19 @@ Functions["mouse"] = {
     // heading.classList.remove("option_" + buttonNumber);
 
     const optionTitle = document.getElementById("optionTitle");
+
     // Remove all classes one by one
     while (optionTitle.classList.length > 0) {
       optionTitle.classList.remove(optionTitle.classList.item(0));
     }
-    optionTitle.classList.add("Hide"); //TODO add me back
+    optionTitle.classList.add("Hide");
+
+    const infotext = document.getElementById("InfoBox");
+    // Remove all classes one by one
+    while (infotext.classList.length > 0) {
+      infotext.classList.remove(infotext.classList.item(0));
+    }
+    infotext.classList.add("Hide");
   },
 };
 
