@@ -380,7 +380,7 @@ body {
   margin-top: -1.2%;
   transition: 0.5s;
 
-  font-size: clamp(15px, 0.7vw, 27px); /* min, preferred, max */
+  font-size: clamp(15px, 0.9vw, 30px); /* min, preferred, max */
   font-weight: bold; /* Make the text bold */
 }
 
