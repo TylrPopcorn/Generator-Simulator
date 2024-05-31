@@ -25,9 +25,12 @@ class HOME extends React.Component {
     super(props); // Allow access to 'this.props'
 
     this.state = {
-      mouseEntered: false, //used to determine if the mouse has enetered a button or not.
-
+      mouseEntered: false, //used to determine if the mouse has enetered a button or not.\
       mouseEvent: "", //Used for mouse title option debounce
+
+      Letter_Option: "Generate a random letter",
+      Number_Option: "Generate a random number",
+      Word_Option: "Generate a random word",
     };
   }
 
@@ -36,7 +39,6 @@ class HOME extends React.Component {
     const button = event.currentTarget;
 
     Functions.mouse["Entered"](event);
-
     this.setState({ mouseEntered: true, mouseEvent: button.id });
 
     wait(900).then(() => {
@@ -51,13 +53,16 @@ class HOME extends React.Component {
 
           infotext.classList.remove("Hide");
           infotext.classList.add(button.id);
+
+          //add corresponding information to the info box:
+          infotext.textContent = this.state[button.id];
         }
       }
     });
   };
 
   MouseLeave = (event) => {
-    this.setState({ mouseEntered: false });
+    this.setState({ mouseEntered: false, mouseEvent: "" });
     Functions.mouse["Left"](event);
   };
 
@@ -106,7 +111,7 @@ class HOME extends React.Component {
           TITLE
         </p>
         <p id="InfoBox" className="">
-          INFORMATION {/* TODO */}
+          INFORMATION
         </p>
       </div>
     );

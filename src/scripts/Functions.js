@@ -43,7 +43,7 @@ Functions["componentDidMount"] = function () {
   const heading = document.getElementsByClassName("heading")[0];
   heading.classList.add("Hide");
 
-  wait(2200).then(() => {
+  wait(2500).then(() => {
     heading.classList.remove("Hide");
   });
 
@@ -108,10 +108,9 @@ Functions["mouse"] = {
     const button = event.currentTarget;
     button.classList.remove("Shrink");
 
+    vars.firstEntrance = true;
     const heading = document.getElementsByClassName("title")[0];
     const removeClasses = ["option_1", "option_2", "option_3"];
-
-    vars.firstEntrance = true;
 
     //remove any previous classes of other options:
     removeClasses.forEach((cls) => {
@@ -130,10 +129,6 @@ Functions["mouse"] = {
     //====================================
     const button = event.currentTarget;
     button.classList.add("Shrink");
-
-    // const heading = document.getElementsByClassName("title")[0];
-    // const buttonNumber = event.currentTarget.classList[0];
-    // heading.classList.remove("option_" + buttonNumber);
 
     const optionTitle = document.getElementById("optionTitle");
 

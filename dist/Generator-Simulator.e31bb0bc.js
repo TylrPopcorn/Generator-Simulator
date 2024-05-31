@@ -36854,7 +36854,7 @@ Functions["componentDidMount"] = function () {
   //-----heading------\\
   const heading = document.getElementsByClassName("heading")[0];
   heading.classList.add("Hide");
-  (0, _wait.default)(2200).then(() => {
+  (0, _wait.default)(2500).then(() => {
     heading.classList.remove("Hide");
   });
 
@@ -36915,9 +36915,9 @@ Functions["mouse"] = {
     //====================================
     const button = event.currentTarget;
     button.classList.remove("Shrink");
+    vars.firstEntrance = true;
     const heading = document.getElementsByClassName("title")[0];
     const removeClasses = ["option_1", "option_2", "option_3"];
-    vars.firstEntrance = true;
 
     //remove any previous classes of other options:
     removeClasses.forEach(cls => {
@@ -36935,11 +36935,6 @@ Functions["mouse"] = {
     //====================================
     const button = event.currentTarget;
     button.classList.add("Shrink");
-
-    // const heading = document.getElementsByClassName("title")[0];
-    // const buttonNumber = event.currentTarget.classList[0];
-    // heading.classList.remove("option_" + buttonNumber);
-
     const optionTitle = document.getElementById("optionTitle");
 
     // Remove all classes one by one
@@ -36996,9 +36991,13 @@ class HOME extends _react.default.Component {
 
     this.state = {
       mouseEntered: false,
-      //used to determine if the mouse has enetered a button or not.
+      //used to determine if the mouse has enetered a button or not.\
+      mouseEvent: "",
+      //Used for mouse title option debounce
 
-      mouseEvent: "" //Used for mouse title option debounce
+      Letter_Option: "Generate a random letter",
+      Number_Option: "Generate a random number",
+      Word_Option: "Generate a random word"
     };
   }
   MouseEnter = event => {
@@ -37019,13 +37018,17 @@ class HOME extends _react.default.Component {
           optionTitle.classList.remove("Hide");
           infotext.classList.remove("Hide");
           infotext.classList.add(button.id);
+
+          //add corresponding information to the info box:
+          infotext.textContent = this.state[button.id];
         }
       }
     });
   };
   MouseLeave = event => {
     this.setState({
-      mouseEntered: false
+      mouseEntered: false,
+      mouseEvent: ""
     });
     _Functions.default.mouse["Left"](event);
   };
@@ -37066,7 +37069,7 @@ class HOME extends _react.default.Component {
     }, "TITLE"), /*#__PURE__*/_react.default.createElement("p", {
       id: "InfoBox",
       className: ""
-    }, "INFORMATION "));
+    }, "INFORMATION"));
   }
 }
 //
@@ -37126,7 +37129,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60296" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56728" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
