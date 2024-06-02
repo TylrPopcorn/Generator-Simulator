@@ -5,12 +5,21 @@ import wait from "./wait";
 
 //--[ VARIABLES ]:--
 const vars = {
-  firstEntrance: false, //variable to stop heading color changing at first instance
-};
-const Functions = {};
+  //ALL 'functions' related variables in one place:
 
+  firstEntrance: false, //variable to stop heading color changing at first instance
+  mouseEntered: false, //used to determine if the mouse has enetered a button or not.
+  mouseEvent: "", //Used for mouse title option debounce
+
+  Letter_Option: "Generate a random letter",
+  Number_Option: "Generate a random number",
+  Word_Option: "Generate a random word",
+};
+
+const Functions = {}; //All returning functions in one place.
 //----------------                  ------------------------------                      ----------------------------
 //----------------                  ------------------------------                      ----------------------------
+//
 Functions["getRandomNumber"] = function (min, max) {
   //Will return a random number between two specified numbers invoked with.
   return Math.floor(min + Math.random() * (max - min + 1));
@@ -102,17 +111,18 @@ Functions["mouse"] = {
   //mouse related items.
   //====================================
 
-  Entered: function (event) {
+  Entered: function (eventButton) {
     //each time the mouse enters a button.
     //====================================
-    const button = event.currentTarget;
-    button.classList.remove("Shrink");
-
     vars.firstEntrance = true;
+    vars.mouseEntered = true;
+    vars.mouseEvent = eventButton.id;
+
+    eventButton.classList.remove("Shrink"); //Shrink fx
+
+    //Remove all classes from the title
     const heading = document.getElementsByClassName("title")[0];
     const removeClasses = ["option_1", "option_2", "option_3"];
-
-    //remove any previous classes of other options:
     removeClasses.forEach((cls) => {
       if (heading.classList.contains(cls)) {
         heading.classList.remove(cls);
@@ -120,26 +130,46 @@ Functions["mouse"] = {
     });
 
     //add corresponding button option number
-    const buttonNumber = event.currentTarget.classList[0];
+    const buttonNumber = eventButton.classList[0];
     heading.classList.add("option_" + buttonNumber);
+
+    wait(900).then(() => {
+      //check if mouse still entered
+      if (vars.mouseEntered === true) {
+        const optionTitle = document.getElementById("optionTitle");
+        const infotext = document.getElementById("InfoBox");
+
+        if (vars.mouseEvent === eventButton.id) {
+          optionTitle.classList.add(eventButton.id);
+          optionTitle.classList.remove("Hide");
+
+          infotext.classList.remove("Hide");
+          infotext.classList.add(eventButton.id);
+
+          //add corresponding information to the info box:
+          infotext.textContent = vars[eventButton.id];
+        }
+      }
+    });
   },
 
-  Left: function (event) {
+  Left: function (eventButton) {
     //Each time the mouse leaves a button.
     //====================================
-    const button = event.currentTarget;
-    button.classList.add("Shrink");
+    vars.mouseEntered = false;
+    vars.mouseEvent = "";
 
+    eventButton.classList.add("Shrink");
+
+    //Remove all classes from optionTitle
     const optionTitle = document.getElementById("optionTitle");
-
-    // Remove all classes one by one
     while (optionTitle.classList.length > 0) {
       optionTitle.classList.remove(optionTitle.classList.item(0));
     }
     optionTitle.classList.add("Hide");
 
+    //Remove all classes from infoBox
     const infotext = document.getElementById("InfoBox");
-    // Remove all classes one by one
     while (infotext.classList.length > 0) {
       infotext.classList.remove(infotext.classList.item(0));
     }
