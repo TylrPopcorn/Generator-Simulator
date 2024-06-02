@@ -35,35 +35,15 @@ class HOME extends React.Component {
   }
 
   MouseEnter = (event) => {
-    //Each time the mouse enters
+    //Each time the mouse enters a button
     const button = event.currentTarget;
-
-    Functions.mouse["Entered"](event);
-    this.setState({ mouseEntered: true, mouseEvent: button.id });
-
-    wait(900).then(() => {
-      //check if mouse still entered
-      if (this.state.mouseEntered === true) {
-        const optionTitle = document.getElementById("optionTitle");
-        const infotext = document.getElementById("InfoBox");
-
-        if (this.state.mouseEvent === button.id) {
-          optionTitle.classList.add(button.id);
-          optionTitle.classList.remove("Hide");
-
-          infotext.classList.remove("Hide");
-          infotext.classList.add(button.id);
-
-          //add corresponding information to the info box:
-          infotext.textContent = this.state[button.id];
-        }
-      }
-    });
+    Functions.mouse["Entered"](button);
   };
 
   MouseLeave = (event) => {
-    this.setState({ mouseEntered: false, mouseEvent: "" });
-    Functions.mouse["Left"](event);
+    //Each time the mouse leaves a button
+    const button = event.currentTarget;
+    Functions.mouse["Left"](button);
   };
 
   componentDidMount() {
