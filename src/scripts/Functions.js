@@ -11,9 +11,9 @@ const vars = {
   mouseEntered: false, //used to determine if the mouse has enetered a button or not.
   mouseEvent: "", //Used for mouse title option debounce
 
-  Letter_Option: "Generate a random letter",
-  Number_Option: "Generate a random number",
-  Word_Option: "Generate a random word",
+  Letter_Option: ["Generate a random letter", "Letter Generator"],
+  Number_Option: ["Generate a random number", "Number Generator"],
+  Word_Option: ["Generate a random word", "Word Generator"],
 };
 
 const Functions = {}; //All returning functions in one place.
@@ -45,6 +45,7 @@ Functions["showButtons"] = async function (elements) {
 //
 //
 
+//=============== [ USE EFFECT ] ==============\\
 Functions["componentDidMount"] = function () {
   //useEffect() function. Will run after the home page mounts.
 
@@ -58,11 +59,11 @@ Functions["componentDidMount"] = function () {
 
   //----- bottom option title----\\
   const optionTitle = document.getElementById("optionTitle");
-  // optionTitle.classList.add("Hide");
+  optionTitle.classList.add("Hide");
 
   //---bottom info text----\\
   const infotext = document.getElementById("InfoBox");
-  // infotext.classList.add("Hide");
+  infotext.classList.add("Hide");
 
   //----HIDE BUTTONS FX---\\
   const randomNumber = Functions["getRandomNumber"];
@@ -107,10 +108,12 @@ Functions["componentDidMount"] = function () {
 //
 //
 
+//=============== [ MOUSE ] ==============\\
 Functions["mouse"] = {
   //mouse related items.
-  //====================================
+  //======================
 
+  //-------
   Entered: function (eventButton) {
     //each time the mouse enters a button.
     //====================================
@@ -139,20 +142,23 @@ Functions["mouse"] = {
         const optionTitle = document.getElementById("optionTitle");
         const infotext = document.getElementById("InfoBox");
 
+        //Enable bottom info text
         if (vars.mouseEvent === eventButton.id) {
           optionTitle.classList.add(eventButton.id);
           optionTitle.classList.remove("Hide");
+          optionTitle.textContent = vars[eventButton.id][1];
 
           infotext.classList.remove("Hide");
           infotext.classList.add(eventButton.id);
 
           //add corresponding information to the info box:
-          infotext.textContent = vars[eventButton.id];
+          infotext.textContent = vars[eventButton.id][0];
         }
       }
     });
   },
 
+  //-------
   Left: function (eventButton) {
     //Each time the mouse leaves a button.
     //====================================
