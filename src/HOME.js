@@ -3,7 +3,6 @@ import React from "react";
 
 //imports:]--
 import "../styles/home.css";
-import wait from "./scripts/wait";
 import Functions from "./scripts/Functions";
 
 //vars:]--------
@@ -21,19 +20,6 @@ let vars = {
 class HOME extends React.Component {
   //
   //
-  constructor(props) {
-    super(props); // Allow access to 'this.props'
-
-    this.state = {
-      mouseEntered: false, //used to determine if the mouse has enetered a button or not.\
-      mouseEvent: "", //Used for mouse title option debounce
-
-      Letter_Option: "Generate a random letter",
-      Number_Option: "Generate a random number",
-      Word_Option: "Generate a random word",
-    };
-  }
-
   MouseEnter = (event) => {
     //Each time the mouse enters a button
     const button = event.currentTarget;
@@ -47,6 +33,7 @@ class HOME extends React.Component {
   };
 
   componentDidMount() {
+    //useEffect() each time the component mounts.
     Functions["componentDidMount"]();
   }
 

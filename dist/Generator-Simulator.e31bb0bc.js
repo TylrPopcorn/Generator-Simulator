@@ -36827,9 +36827,9 @@ const vars = {
   mouseEvent: "",
   //Used for mouse title option debounce
 
-  Letter_Option: "Generate a random letter",
-  Number_Option: "Generate a random number",
-  Word_Option: "Generate a random word"
+  Letter_Option: ["Generate a random letter", "Letter Generator"],
+  Number_Option: ["Generate a random number", "Number Generator"],
+  Word_Option: ["Generate a random word", "Word Generator"]
 };
 const Functions = {}; //All returning functions in one place.
 //----------------                  ------------------------------                      ----------------------------
@@ -36859,6 +36859,7 @@ Functions["showButtons"] = async function (elements) {
 //
 //
 
+//=============== [ USE EFFECT ] ==============\\
 Functions["componentDidMount"] = function () {
   //useEffect() function. Will run after the home page mounts.
 
@@ -36871,11 +36872,11 @@ Functions["componentDidMount"] = function () {
 
   //----- bottom option title----\\
   const optionTitle = document.getElementById("optionTitle");
-  // optionTitle.classList.add("Hide");
+  optionTitle.classList.add("Hide");
 
   //---bottom info text----\\
   const infotext = document.getElementById("InfoBox");
-  // infotext.classList.add("Hide");
+  infotext.classList.add("Hide");
 
   //----HIDE BUTTONS FX---\\
   const randomNumber = Functions["getRandomNumber"];
@@ -36917,10 +36918,12 @@ Functions["componentDidMount"] = function () {
 //
 //
 
+//=============== [ MOUSE ] ==============\\
 Functions["mouse"] = {
   //mouse related items.
-  //====================================
+  //======================
 
+  //-------
   Entered: function (eventButton) {
     //each time the mouse enters a button.
     //====================================
@@ -36946,18 +36949,22 @@ Functions["mouse"] = {
       if (vars.mouseEntered === true) {
         const optionTitle = document.getElementById("optionTitle");
         const infotext = document.getElementById("InfoBox");
+
+        //Enable bottom info text
         if (vars.mouseEvent === eventButton.id) {
           optionTitle.classList.add(eventButton.id);
           optionTitle.classList.remove("Hide");
+          optionTitle.textContent = vars[eventButton.id][1];
           infotext.classList.remove("Hide");
           infotext.classList.add(eventButton.id);
 
           //add corresponding information to the info box:
-          infotext.textContent = vars[eventButton.id];
+          infotext.textContent = vars[eventButton.id][0];
         }
       }
     });
   },
+  //-------
   Left: function (eventButton) {
     //Each time the mouse leaves a button.
     //====================================
@@ -36994,7 +37001,6 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var _react = _interopRequireDefault(require("react"));
 require("../styles/home.css");
-var _wait = _interopRequireDefault(require("./scripts/wait"));
 var _Functions = _interopRequireDefault(require("./scripts/Functions"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 // THIS IS THE HOME SCREEN
@@ -37016,20 +37022,6 @@ let vars = {
 class HOME extends _react.default.Component {
   //
   //
-  constructor(props) {
-    super(props); // Allow access to 'this.props'
-
-    this.state = {
-      mouseEntered: false,
-      //used to determine if the mouse has enetered a button or not.\
-      mouseEvent: "",
-      //Used for mouse title option debounce
-
-      Letter_Option: "Generate a random letter",
-      Number_Option: "Generate a random number",
-      Word_Option: "Generate a random word"
-    };
-  }
   MouseEnter = event => {
     //Each time the mouse enters a button
     const button = event.currentTarget;
@@ -37041,6 +37033,7 @@ class HOME extends _react.default.Component {
     _Functions.default.mouse["Left"](button);
   };
   componentDidMount() {
+    //useEffect() each time the component mounts.
     _Functions.default["componentDidMount"]();
   }
 
@@ -37085,7 +37078,7 @@ class HOME extends _react.default.Component {
 
 //EXPORTS:----------
 var _default = exports.default = HOME;
-},{"react":"node_modules/react/index.js","../styles/home.css":"styles/home.css","./scripts/wait":"src/scripts/wait.ts","./scripts/Functions":"src/scripts/Functions.js"}],"index.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","../styles/home.css":"styles/home.css","./scripts/Functions":"src/scripts/Functions.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -37137,7 +37130,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58410" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51503" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
