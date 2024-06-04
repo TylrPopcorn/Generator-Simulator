@@ -23,13 +23,13 @@ class HOME extends React.Component {
   MouseEnter = (event) => {
     //Each time the mouse enters a button
     const button = event.currentTarget;
-    Functions.mouse["Entered"](button);
+    Functions["mouseEntered"](button);
   };
 
   MouseLeave = (event) => {
     //Each time the mouse leaves a button
     const button = event.currentTarget;
-    Functions.mouse["Left"](button);
+    Functions["mouseLeft"](button);
   };
 
   componentDidMount() {

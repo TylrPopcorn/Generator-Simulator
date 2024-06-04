@@ -15,7 +15,6 @@ interface Vars {
 interface FunctionsType {
   [key: string]: Function;
 }
-
 //-----[ VARIABLES ]:-----
 const vars: Vars = {
   //ALL 'functions' related variables in one place:
@@ -29,22 +28,31 @@ const vars: Vars = {
   Word_Option: ["Generate a random word", "Word Generator"],
 };
 
-const Functions: FunctionsType = {}; //All returning functions in one place.
+const Functions: FunctionsType = {
+  //All returning functions in one place.
+  //-----------------------------------
+  //  func getRandomNumber()
+  //  func showButtons()
+  //  func componentDidMount()
+};
 //----------------                  ------------------------------                      ----------------------------
 //----------------                  ------------------------------                      ----------------------------
 //
 
 Functions["getRandomNumber"] = function (min: number, max: number): Number {
   //Will return a random number between two specified numbers invoked with.
+  //====================================
   return Math.floor(min + Math.random() * (max - min + 1));
 };
 
 //
 //
+
 Functions["showButtons"] = async function (elements: {
   [key: string]: HTMLElement;
 }): Promise<void> {
   //Will show homepage buttons in an orderly fashion.
+  //====================================
 
   const delayBeforeShow = 200; //delay before removing 'Hide' class
 
@@ -62,6 +70,7 @@ Functions["showButtons"] = async function (elements: {
 
 Functions["componentDidMount"] = function () {
   //useEffect() function. Will run after the home page mounts.
+  //====================================
 
   //-----heading------\\
   const heading = document.getElementsByClassName("heading")[0] as HTMLElement;
@@ -119,3 +128,48 @@ Functions["componentDidMount"] = function () {
 
 //
 //
+
+//=============== [ MOUSE ] ==============\\
+Functions["mouseEntered"] = function (eventButton: HTMLElement) {
+  //each time the mouse enters a button.
+  //====================================
+  vars.firstEntrance = true;
+  vars.mouseEntered = true;
+  vars.mouseEvent = eventButton.id;
+
+  eventButton.classList.remove("Shrink"); //Shrink fx
+
+  //Remove all classes from the title
+  const heading = document.getElementsByClassName("title")[0];
+  const removeClasses = ["option_1", "option_2", "option_3"];
+  removeClasses.forEach((cls) => {
+    if (heading.classList.contains(cls)) {
+      heading.classList.remove(cls);
+    }
+  });
+
+  //add corresponding button option number
+  const buttonNumber = eventButton.classList[0];
+  heading.classList.add("option_" + buttonNumber);
+
+  wait(900).then(() => {
+    //check if mouse still entered
+    if (vars.mouseEntered === true) {
+      const optionTitle = document.getElementById("optionTitle") as HTMLElement;
+      const infotext = document.getElementById("InfoBox") as HTMLElement;
+
+      //Enable bottom info text
+      if (vars.mouseEvent === eventButton.id) {
+        optionTitle.classList.add(eventButton.id);
+        optionTitle.classList.remove("Hide");
+        optionTitle.textContent = vars[eventButton.id][1];
+
+        infotext.classList.remove("Hide");
+        infotext.classList.add(eventButton.id);
+
+        //add corresponding information to the info box:
+        infotext.textContent = vars[eventButton.id][0];
+      }
+    }
+  });
+};
