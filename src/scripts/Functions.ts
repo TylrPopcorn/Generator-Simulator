@@ -34,25 +34,29 @@ const Functions: FunctionsType = {
   //  func getRandomNumber()
   //  func showButtons()
   //  func componentDidMount()
+  //  func mouseEntered()
+  //  func mouseLeft()
 };
 //----------------                  ------------------------------                      ----------------------------
-//----------------                  ------------------------------                      ----------------------------
+//----------------                  ---------[ FUNCTIONS ]--------                      ----------------------------
 //
 
+//=============== [ getRandomNumber ] ==============\\
 Functions["getRandomNumber"] = function (min: number, max: number): Number {
   //Will return a random number between two specified numbers invoked with.
-  //====================================
+  //---------------------------------------
   return Math.floor(min + Math.random() * (max - min + 1));
 };
 
 //
 //
 
+//=============== [ showButtons ] ==============\\
 Functions["showButtons"] = async function (elements: {
   [key: string]: HTMLElement;
 }): Promise<void> {
   //Will show homepage buttons in an orderly fashion.
-  //====================================
+  //-------------------------------------
 
   const delayBeforeShow = 200; //delay before removing 'Hide' class
 
@@ -68,9 +72,10 @@ Functions["showButtons"] = async function (elements: {
 //
 //
 
+//=============== [ ComponentDidMount ] ==============\\
 Functions["componentDidMount"] = function () {
   //useEffect() function. Will run after the home page mounts.
-  //====================================
+  //------------------------------
 
   //-----heading------\\
   const heading = document.getElementsByClassName("heading")[0] as HTMLElement;
@@ -83,6 +88,10 @@ Functions["componentDidMount"] = function () {
   //----- bottom option title----\\
   const optionTitle = document.getElementById("optionTitle") as HTMLElement;
   optionTitle.classList.add("Hide");
+
+  //---bottom info text----\\
+  const infotext = document.getElementById("InfoBox") as HTMLElement;
+  infotext.classList.add("Hide");
 
   //----HIDE BUTTONS FX---\\
   const randomNumber = Functions["getRandomNumber"];
@@ -129,10 +138,10 @@ Functions["componentDidMount"] = function () {
 //
 //
 
-//=============== [ MOUSE ] ==============\\
+//=============== [ MOUSE - entered ] ==============\\
 Functions["mouseEntered"] = function (eventButton: HTMLElement) {
   //each time the mouse enters a button.
-  //====================================
+  //----------------------
   vars.firstEntrance = true;
   vars.mouseEntered = true;
   vars.mouseEvent = eventButton.id;
@@ -140,7 +149,7 @@ Functions["mouseEntered"] = function (eventButton: HTMLElement) {
   eventButton.classList.remove("Shrink"); //Shrink fx
 
   //Remove all classes from the title
-  const heading = document.getElementsByClassName("title")[0];
+  const heading = document.getElementsByClassName("title")[0] as HTMLElement;
   const removeClasses = ["option_1", "option_2", "option_3"];
   removeClasses.forEach((cls) => {
     if (heading.classList.contains(cls)) {
@@ -172,4 +181,44 @@ Functions["mouseEntered"] = function (eventButton: HTMLElement) {
       }
     }
   });
+
+  //
+  //
+
+  //=============== [ MOUSE - left ] ==============\\
+  Functions["mouseLeft"] = function (eventButton: HTMLElement) {
+    //Each time the mouse leaves a button.
+    //----------------------
+
+    vars.mouseEntered = false;
+    vars.mouseEvent = "";
+
+    eventButton.classList.add("Shrink"); //return to normal size
+
+    //Remove all classes from optionTitle
+    const optionTitle = document.getElementById("optionTitle") as HTMLElement;
+    while (optionTitle.classList.length > 0) {
+      const className = optionTitle.classList.item(0);
+      if (className) {
+        optionTitle.classList.remove(className);
+      }
+    }
+    optionTitle.classList.add("Hide");
+
+    //Remove all classes from infoBox
+    const infoText = document.getElementById("InfoBox") as HTMLElement;
+    while (infoText.classList.length > 0) {
+      const className = infoText.classList.item(0);
+      if (className) {
+        infoText.classList.remove(className);
+      }
+    }
+    infoText.classList.add("Hide");
+  };
 };
+//
+//----------------                  ------------------------------                      ----------------------------
+
+//-----[ EXPORTS ]: --]
+export default Functions;
+//---------------------

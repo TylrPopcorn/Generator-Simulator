@@ -36803,195 +36803,324 @@ function wait(time) {
   });
 }
 exports.default = wait;
-},{}],"src/scripts/Functions.js":[function(require,module,exports) {
+},{}],"src/scripts/Functions.ts":[function(require,module,exports) {
 "use strict";
 
+var __awaiter = this && this.__awaiter || function (thisArg, _arguments, P, generator) {
+  function adopt(value) {
+    return value instanceof P ? value : new P(function (resolve) {
+      resolve(value);
+    });
+  }
+  return new (P || (P = Promise))(function (resolve, reject) {
+    function fulfilled(value) {
+      try {
+        step(generator.next(value));
+      } catch (e) {
+        reject(e);
+      }
+    }
+    function rejected(value) {
+      try {
+        step(generator["throw"](value));
+      } catch (e) {
+        reject(e);
+      }
+    }
+    function step(result) {
+      result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
+    }
+    step((generator = generator.apply(thisArg, _arguments || [])).next());
+  });
+};
+var __generator = this && this.__generator || function (thisArg, body) {
+  var _ = {
+      label: 0,
+      sent: function () {
+        if (t[0] & 1) throw t[1];
+        return t[1];
+      },
+      trys: [],
+      ops: []
+    },
+    f,
+    y,
+    t,
+    g;
+  return g = {
+    next: verb(0),
+    "throw": verb(1),
+    "return": verb(2)
+  }, typeof Symbol === "function" && (g[Symbol.iterator] = function () {
+    return this;
+  }), g;
+  function verb(n) {
+    return function (v) {
+      return step([n, v]);
+    };
+  }
+  function step(op) {
+    if (f) throw new TypeError("Generator is already executing.");
+    while (g && (g = 0, op[0] && (_ = 0)), _) try {
+      if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+      if (y = 0, t) op = [op[0] & 2, t.value];
+      switch (op[0]) {
+        case 0:
+        case 1:
+          t = op;
+          break;
+        case 4:
+          _.label++;
+          return {
+            value: op[1],
+            done: false
+          };
+        case 5:
+          _.label++;
+          y = op[1];
+          op = [0];
+          continue;
+        case 7:
+          op = _.ops.pop();
+          _.trys.pop();
+          continue;
+        default:
+          if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) {
+            _ = 0;
+            continue;
+          }
+          if (op[0] === 3 && (!t || op[1] > t[0] && op[1] < t[3])) {
+            _.label = op[1];
+            break;
+          }
+          if (op[0] === 6 && _.label < t[1]) {
+            _.label = t[1];
+            t = op;
+            break;
+          }
+          if (t && _.label < t[2]) {
+            _.label = t[2];
+            _.ops.push(op);
+            break;
+          }
+          if (t[2]) _.ops.pop();
+          _.trys.pop();
+          continue;
+      }
+      op = body.call(thisArg, _);
+    } catch (e) {
+      op = [6, e];
+      y = 0;
+    } finally {
+      f = t = 0;
+    }
+    if (op[0] & 5) throw op[1];
+    return {
+      value: op[0] ? op[1] : void 0,
+      done: true
+    };
+  }
+};
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
-var _wait = _interopRequireDefault(require("./wait"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-//Extra functions all under one file.
-//
 //--[ IMPORTS ]:--
-
-//--[ VARIABLES ]:--
-const vars = {
+var wait_1 = __importDefault(require("./wait"));
+//-----[ VARIABLES ]:-----
+var vars = {
   //ALL 'functions' related variables in one place:
-
   firstEntrance: false,
-  //variable to stop heading color changing at first instance
   mouseEntered: false,
-  //used to determine if the mouse has enetered a button or not.
   mouseEvent: "",
-  //Used for mouse title option debounce
-
   Letter_Option: ["Generate a random letter", "Letter Generator"],
   Number_Option: ["Generate a random number", "Number Generator"],
   Word_Option: ["Generate a random word", "Word Generator"]
 };
-const Functions = {}; //All returning functions in one place.
+var Functions = {
+  //All returning functions in one place.
+  //-----------------------------------
+  //  func getRandomNumber()
+  //  func showButtons()
+  //  func componentDidMount()
+  //  func mouseEntered()
+  //  func mouseLeft()
+};
 //----------------                  ------------------------------                      ----------------------------
-//----------------                  ------------------------------                      ----------------------------
+//----------------                  ---------[ FUNCTIONS ]--------                      ----------------------------
 //
+//=============== [ getRandomNumber ] ==============\\
 Functions["getRandomNumber"] = function (min, max) {
   //Will return a random number between two specified numbers invoked with.
+  //---------------------------------------
   return Math.floor(min + Math.random() * (max - min + 1));
 };
-
 //
 //
-
-Functions["showButtons"] = async function (elements) {
-  //Will show homepage buttons in an orderly fashion.
-
-  const delayBeforeShow = 200; // Delay before removing 'Hide' class
-
-  for (let button in elements) {
-    //Loop through the elements,
-    const correspondant = elements[button];
-    await (0, _wait.default)(delayBeforeShow); // Delay before showing elements again
-    correspondant.classList.remove("Hide");
-  }
+//=============== [ showButtons ] ==============\\
+Functions["showButtons"] = function (elements) {
+  return __awaiter(this, void 0, Promise, function () {
+    var delayBeforeShow, _a, _b, _c, _i, button, correspondant;
+    return __generator(this, function (_d) {
+      switch (_d.label) {
+        case 0:
+          delayBeforeShow = 200;
+          _a = elements;
+          _b = [];
+          for (_c in _a) _b.push(_c);
+          _i = 0;
+          _d.label = 1;
+        case 1:
+          if (!(_i < _b.length)) return [3 /*break*/, 4];
+          _c = _b[_i];
+          if (!(_c in _a)) return [3 /*break*/, 3];
+          button = _c;
+          correspondant = elements[button];
+          return [4 /*yield*/, (0, wait_1.default)(delayBeforeShow)];
+        case 2:
+          _d.sent(); //delay before showing elements again
+          correspondant.classList.remove("Hide");
+          _d.label = 3;
+        case 3:
+          _i++;
+          return [3 /*break*/, 1];
+        case 4:
+          return [2 /*return*/];
+      }
+    });
+  });
 };
-
 //
 //
-
-//=============== [ USE EFFECT ] ==============\\
+//=============== [ ComponentDidMount ] ==============\\
 Functions["componentDidMount"] = function () {
   //useEffect() function. Will run after the home page mounts.
-
+  //------------------------------
   //-----heading------\\
-  const heading = document.getElementsByClassName("heading")[0];
+  var heading = document.getElementsByClassName("heading")[0];
   heading.classList.add("Hide");
-  (0, _wait.default)(2500).then(() => {
+  (0, wait_1.default)(2500).then(function () {
     heading.classList.remove("Hide");
   });
-
   //----- bottom option title----\\
-  const optionTitle = document.getElementById("optionTitle");
+  var optionTitle = document.getElementById("optionTitle");
   optionTitle.classList.add("Hide");
-
   //---bottom info text----\\
-  const infotext = document.getElementById("InfoBox");
+  var infotext = document.getElementById("InfoBox");
   infotext.classList.add("Hide");
-
   //----HIDE BUTTONS FX---\\
-  const randomNumber = Functions["getRandomNumber"];
-  const elements = {
+  var randomNumber = Functions["getRandomNumber"];
+  var elements = {
     Letter: document.getElementById("Letter_Option"),
     Number: document.getElementById("Number_Option"),
     Word: document.getElementById("Word_Option")
   };
-  //----
-  for (let button in elements) {
-    //Loop through elements
-    const correspondant = elements[button];
+  var _loop_1 = function (button) {
+    //Loop through button elements
+    var correspondant = elements[button];
     correspondant.classList.add("Shrink");
-    (0, _wait.default)(200).then(() => {
+    (0, wait_1.default)(200).then(function () {
       //Wait, then hide elements
       correspondant.classList.add("Hide");
     });
+  };
+  for (var button in elements) {
+    _loop_1(button);
   }
-
   //---SHOW BUTTONS FX---\\
-  (0, _wait.default)(randomNumber(500, 900)).then(() => {
-    //Wait then show elements
+  (0, wait_1.default)(randomNumber(500, 900)).then(function () {
+    //Wait, then show elements.
     Functions["showButtons"](elements);
   });
-
   //---Title COLOR LOOP FX----\\
-  const title = document.getElementsByClassName("title")[0];
-  if (vars.firstEntrance == false) {
+  var title = document.getElementsByClassName("title")[0];
+  if (vars.firstEntrance === false) {
     title.classList.add("colorAnimation");
-    let Loop;
-    Loop = setInterval(() => {
-      if (vars.firstEntrance == true) {
+    var Loop_1;
+    Loop_1 = setInterval(function () {
+      if (vars.firstEntrance === true) {
         title.classList.remove("colorAnimation");
+        clearInterval(Loop_1); // Clear the interval when firstEntrance becomes true
       }
     }, 200);
   }
 };
-
 //
 //
-
-//=============== [ MOUSE ] ==============\\
-Functions["mouse"] = {
-  //mouse related items.
-  //======================
-
-  //-------
-  Entered: function (eventButton) {
-    //each time the mouse enters a button.
-    //====================================
-    vars.firstEntrance = true;
-    vars.mouseEntered = true;
-    vars.mouseEvent = eventButton.id;
-    eventButton.classList.remove("Shrink"); //Shrink fx
-
-    //Remove all classes from the title
-    const heading = document.getElementsByClassName("title")[0];
-    const removeClasses = ["option_1", "option_2", "option_3"];
-    removeClasses.forEach(cls => {
-      if (heading.classList.contains(cls)) {
-        heading.classList.remove(cls);
+//=============== [ MOUSE - entered ] ==============\\
+Functions["mouseEntered"] = function (eventButton) {
+  //each time the mouse enters a button.
+  //----------------------
+  vars.firstEntrance = true;
+  vars.mouseEntered = true;
+  vars.mouseEvent = eventButton.id;
+  eventButton.classList.remove("Shrink"); //Shrink fx
+  //Remove all classes from the title
+  var heading = document.getElementsByClassName("title")[0];
+  var removeClasses = ["option_1", "option_2", "option_3"];
+  removeClasses.forEach(function (cls) {
+    if (heading.classList.contains(cls)) {
+      heading.classList.remove(cls);
+    }
+  });
+  //add corresponding button option number
+  var buttonNumber = eventButton.classList[0];
+  heading.classList.add("option_" + buttonNumber);
+  (0, wait_1.default)(900).then(function () {
+    //check if mouse still entered
+    if (vars.mouseEntered === true) {
+      var optionTitle = document.getElementById("optionTitle");
+      var infotext = document.getElementById("InfoBox");
+      //Enable bottom info text
+      if (vars.mouseEvent === eventButton.id) {
+        optionTitle.classList.add(eventButton.id);
+        optionTitle.classList.remove("Hide");
+        optionTitle.textContent = vars[eventButton.id][1];
+        infotext.classList.remove("Hide");
+        infotext.classList.add(eventButton.id);
+        //add corresponding information to the info box:
+        infotext.textContent = vars[eventButton.id][0];
       }
-    });
-
-    //add corresponding button option number
-    const buttonNumber = eventButton.classList[0];
-    heading.classList.add("option_" + buttonNumber);
-    (0, _wait.default)(900).then(() => {
-      //check if mouse still entered
-      if (vars.mouseEntered === true) {
-        const optionTitle = document.getElementById("optionTitle");
-        const infotext = document.getElementById("InfoBox");
-
-        //Enable bottom info text
-        if (vars.mouseEvent === eventButton.id) {
-          optionTitle.classList.add(eventButton.id);
-          optionTitle.classList.remove("Hide");
-          optionTitle.textContent = vars[eventButton.id][1];
-          infotext.classList.remove("Hide");
-          infotext.classList.add(eventButton.id);
-
-          //add corresponding information to the info box:
-          infotext.textContent = vars[eventButton.id][0];
-        }
-      }
-    });
-  },
-  //-------
-  Left: function (eventButton) {
+    }
+  });
+  //
+  //
+  //=============== [ MOUSE - left ] ==============\\
+  Functions["mouseLeft"] = function (eventButton) {
     //Each time the mouse leaves a button.
-    //====================================
+    //----------------------
     vars.mouseEntered = false;
     vars.mouseEvent = "";
-    eventButton.classList.add("Shrink");
-
+    eventButton.classList.add("Shrink"); //return to normal size
     //Remove all classes from optionTitle
-    const optionTitle = document.getElementById("optionTitle");
+    var optionTitle = document.getElementById("optionTitle");
     while (optionTitle.classList.length > 0) {
-      optionTitle.classList.remove(optionTitle.classList.item(0));
+      var className = optionTitle.classList.item(0);
+      if (className) {
+        optionTitle.classList.remove(className);
+      }
     }
     optionTitle.classList.add("Hide");
-
     //Remove all classes from infoBox
-    const infotext = document.getElementById("InfoBox");
-    while (infotext.classList.length > 0) {
-      infotext.classList.remove(infotext.classList.item(0));
+    var infoText = document.getElementById("InfoBox");
+    while (infoText.classList.length > 0) {
+      var className = infoText.classList.item(0);
+      if (className) {
+        infoText.classList.remove(className);
+      }
     }
-    infotext.classList.add("Hide");
-  }
+    infoText.classList.add("Hide");
+  };
 };
-
+//
 //----------------                  ------------------------------                      ----------------------------
-
 //-----[ EXPORTS ]: --]
-var _default = exports.default = Functions; //---------------------
+exports.default = Functions;
+//---------------------
 },{"./wait":"src/scripts/wait.ts"}],"src/HOME.js":[function(require,module,exports) {
 "use strict";
 
@@ -37001,7 +37130,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var _react = _interopRequireDefault(require("react"));
 require("../styles/home.css");
-var _Functions = _interopRequireDefault(require("./scripts/Functions"));
+var _Functions = _interopRequireDefault(require("./scripts/Functions.ts"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 // THIS IS THE HOME SCREEN
 
@@ -37009,7 +37138,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 //vars:]--------
 let vars = {
-  TITLE: "GENERATOR SIMULATOR" /* Change the title to whatever */
+  TITLE: "GENERATOR SIMULATOR" /* Title of the page */
 
   //--add more variables here:--
   //--
@@ -37025,12 +37154,12 @@ class HOME extends _react.default.Component {
   MouseEnter = event => {
     //Each time the mouse enters a button
     const button = event.currentTarget;
-    _Functions.default.mouse["Entered"](button);
+    _Functions.default["mouseEntered"](button);
   };
   MouseLeave = event => {
     //Each time the mouse leaves a button
     const button = event.currentTarget;
-    _Functions.default.mouse["Left"](button);
+    _Functions.default["mouseLeft"](button);
   };
   componentDidMount() {
     //useEffect() each time the component mounts.
@@ -37078,7 +37207,7 @@ class HOME extends _react.default.Component {
 
 //EXPORTS:----------
 var _default = exports.default = HOME;
-},{"react":"node_modules/react/index.js","../styles/home.css":"styles/home.css","./scripts/Functions":"src/scripts/Functions.js"}],"index.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","../styles/home.css":"styles/home.css","./scripts/Functions.ts":"src/scripts/Functions.ts"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -37130,7 +37259,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51503" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64430" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
