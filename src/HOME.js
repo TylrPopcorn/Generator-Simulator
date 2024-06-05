@@ -3,11 +3,11 @@ import React from "react";
 
 //imports:]--
 import "../styles/home.css";
-import Functions from "./scripts/Functions";
+import Functions from "./scripts/Functions.ts";
 
 //vars:]--------
 let vars = {
-  TITLE: "GENERATOR SIMULATOR" /* Change the title to whatever */,
+  TITLE: "GENERATOR SIMULATOR" /* Title of the page */,
 
   //--add more variables here:--
   //--
