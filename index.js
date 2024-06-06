@@ -1,7 +1,10 @@
+//Generator Simulator. 3 Generators combined into 1 website.
+//imports:]--
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+//styles:]--
 import "./styles/styles.css";
 
 /*
@@ -12,7 +15,10 @@ import "./styles/styles.css";
  npm install react-router-dom
 */
 
+//components:]--
+import Redirect from "./src/Redirect";
 import HOME from "./src/HOME";
+import LetterGenerator from "./simulators/Letter/LetterGenerator";
 //
 
 //vars:
@@ -28,6 +34,11 @@ root.render(
     <Routes>
       {/* ROUTES */}
       <Route path="/" element={<HOME />} />
+      <Route exact path="Number" element={<LetterGenerator />} />
+
+      {/* ----- Catch all unknown pages ----- */}
+      <Route path="*" element={<Redirect />} />
+      {/*----------------------------*/}
     </Routes>
   </BrowserRouter>
 );
