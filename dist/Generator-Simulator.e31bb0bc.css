@@ -1,6 +1,6 @@
 /* [VARIABLES:] */
 :root {
-  --background: #181818;
+  --background: rgb(4, 4, 4);
 }
 
 /*--HTML--*/
@@ -18,12 +18,18 @@ body {
 }
 
 #wrapper {
+  background: red;
+
   display: flex;
   flex-direction: column;
   align-items: center;
 
   margin: 0;
   padding: 0;
+}
+
+#wrapper {
+  height: 100vh;
 }
 
 /* ALL of 'HOME' related styling*/
@@ -85,7 +91,6 @@ body {
 }
 /*--------[ BODY ]------------*/
 #wrapper {
-  background-color: rgb(4, 4, 4);
   height: 100vh;
 }
 
