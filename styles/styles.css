@@ -1,6 +1,6 @@
 /* [VARIABLES:] */
 :root {
-  --background: #181818;
+  --background: rgb(4, 4, 4);
 }
 
 /*--HTML--*/
@@ -18,6 +18,8 @@ body {
 }
 
 #wrapper {
+  background: red;
+
   display: flex;
   flex-direction: column;
   align-items: center;
