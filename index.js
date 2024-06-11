@@ -18,7 +18,7 @@ import "./styles/styles.css";
 //components:]--
 import Redirect from "./src/Redirect";
 import HOME from "./src/HOME";
-import LetterGenerator from "./simulators/Letter/LetterGenerator";
+import NumberGenerator from "./simulators/Number/NumberGenerator";
 //
 
 //vars:
@@ -34,7 +34,7 @@ root.render(
     <Routes>
       {/* ROUTES */}
       <Route path="/" element={<HOME />} />
-      <Route exact path="Number" element={<LetterGenerator />} />
+      <Route exact path="Number" element={<NumberGenerator />} />
 
       {/* ----- Catch all unknown pages ----- */}
       <Route path="*" element={<Redirect />} />
