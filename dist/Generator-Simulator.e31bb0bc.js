@@ -36786,10 +36786,6 @@ module.exports = reloadCSS;
 var reloadCSS = require('_css_loader');
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"styles/redirect.css":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
 },{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"src/Redirect.js":[function(require,module,exports) {
 "use strict";
 
@@ -36800,7 +36796,6 @@ exports.default = Redirect;
 var _react = _interopRequireWildcard(require("react"));
 var _reactRouterDom = require("react-router-dom");
 require("../styles/styles.css");
-require("../styles/redirect.css");
 function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
 function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
 //eslint-disable-line
@@ -36811,20 +36806,16 @@ function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; 
 function Redirect() {
   //Will redirect the user back to the homepage if user tries to go to non-existant page.
   const navigate = (0, _reactRouterDom.useNavigate)();
-
-  // useEffect(() => {
-  //   //Once the page finishes loading.
-  //   navigate("/"); //navigate back to homepage
-  // }, [navigate]);
-
-  return /*#__PURE__*/_react.default.createElement("div", {
-    className: "errorBox wrapper"
-  }, /*#__PURE__*/_react.default.createElement("p", null, "ERROR"));
+  (0, _react.useEffect)(() => {
+    //Once the page finishes loading.
+    navigate("/"); //navigate back to homepage
+  }, [navigate]);
+  return null;
 }
 //
 //
 //
-},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/dist/index.js","../styles/styles.css":"styles/styles.css","../styles/redirect.css":"styles/redirect.css"}],"styles/home.css":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/dist/index.js","../styles/styles.css":"styles/styles.css"}],"styles/home.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
@@ -37245,7 +37236,11 @@ class HOME extends _react.default.Component {
 
 //EXPORTS:----------
 var _default = exports.default = HOME;
-},{"react":"node_modules/react/index.js","../styles/home.css":"styles/home.css","./scripts/Functions.ts":"src/scripts/Functions.ts"}],"simulators/Letter/LetterGenerator.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","../styles/home.css":"styles/home.css","./scripts/Functions.ts":"src/scripts/Functions.ts"}],"styles/numberGen.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"simulators/Number/NumberGenerator.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -37254,6 +37249,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var _react = _interopRequireDefault(require("react"));
 require("../../styles/styles.css");
+require("../../styles/numberGen.css");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 //L E T T E R   G E N E R A T O R
 //--------------------------------
@@ -37262,15 +37258,40 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 //styles:]--
 
+//vars:]--------
+let vars = {
+  TITLE: "NUMBER GENERATOR" /* Title of the page */
+
+  //--add more variables here:--
+  //--
+  //--
+};
+
 //------[ MAIN COMPONENT ]------\\
-function LetterGenerator() {
-  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", null, " LETTER GENERATOR "));
+function NumberGenerator() {
+  return /*#__PURE__*/_react.default.createElement("div", {
+    id: "wrapper",
+    className: "App"
+  }, /*#__PURE__*/_react.default.createElement("h1", {
+    className: "title",
+    "data-text": vars.TITLE
+  }, vars.TITLE), /*#__PURE__*/_react.default.createElement("div", {
+    className: "NumberArea"
+  }, /*#__PURE__*/_react.default.createElement("p", {
+    className: "randomNumber"
+  }, "0")), /*#__PURE__*/_react.default.createElement("div", {
+    className: "ButtonHolder"
+  }, /*#__PURE__*/_react.default.createElement("button", {
+    className: "GenerateButton"
+  }, "Generate")), /*#__PURE__*/_react.default.createElement("div", {
+    className: "BottomFrame"
+  }, /*#__PURE__*/_react.default.createElement("p", null, "Click the button above to generate a random number")));
 }
 
 //---  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 //---[ EXPORTS ]---\\
-var _default = exports.default = LetterGenerator; //-------------------
-},{"react":"node_modules/react/index.js","../../styles/styles.css":"styles/styles.css"}],"index.js":[function(require,module,exports) {
+var _default = exports.default = NumberGenerator; //-------------------
+},{"react":"node_modules/react/index.js","../../styles/styles.css":"styles/styles.css","../../styles/numberGen.css":"styles/numberGen.css"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -37279,7 +37300,7 @@ var _reactRouterDom = require("react-router-dom");
 require("./styles/styles.css");
 var _Redirect = _interopRequireDefault(require("./src/Redirect"));
 var _HOME = _interopRequireDefault(require("./src/HOME"));
-var _LetterGenerator = _interopRequireDefault(require("./simulators/Letter/LetterGenerator"));
+var _NumberGenerator = _interopRequireDefault(require("./simulators/Number/NumberGenerator"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 //Generator Simulator. 3 Generators combined into 1 website.
 //imports:]--
@@ -37308,12 +37329,12 @@ root.render( /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRo
 }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
   exact: true,
   path: "Number",
-  element: /*#__PURE__*/_react.default.createElement(_LetterGenerator.default, null)
+  element: /*#__PURE__*/_react.default.createElement(_NumberGenerator.default, null)
 }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
   path: "*",
   element: /*#__PURE__*/_react.default.createElement(_Redirect.default, null)
 }))));
-},{"react":"node_modules/react/index.js","react-dom/client":"node_modules/react-dom/client.js","react-router-dom":"node_modules/react-router-dom/dist/index.js","./styles/styles.css":"styles/styles.css","./src/Redirect":"src/Redirect.js","./src/HOME":"src/HOME.js","./simulators/Letter/LetterGenerator":"simulators/Letter/LetterGenerator.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","react-dom/client":"node_modules/react-dom/client.js","react-router-dom":"node_modules/react-router-dom/dist/index.js","./styles/styles.css":"styles/styles.css","./src/Redirect":"src/Redirect.js","./src/HOME":"src/HOME.js","./simulators/Number/NumberGenerator":"simulators/Number/NumberGenerator.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -37338,7 +37359,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55830" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59774" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
