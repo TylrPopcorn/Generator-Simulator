@@ -1,0 +1,14 @@
+/* ALL of 'NUMBER GENERATOR' related styling*/
+/**/
+/**/
+
+.n_title {
+  margin-top: 2.8%;
+  font-size: clamp(16px, 1vw, 36px); /* min, preferred, max */
+  font-weight: bold;
+
+  -webkit-text-stroke: 0.1px rgb(0, 0, 0);
+  text-shadow: 0px 0px 9px rgb(255, 255, 255);
+
+  transition: 0.8s;
+}
