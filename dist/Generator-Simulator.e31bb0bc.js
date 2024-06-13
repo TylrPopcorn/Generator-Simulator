@@ -37236,7 +37236,7 @@ class HOME extends _react.default.Component {
 
 //EXPORTS:----------
 var _default = exports.default = HOME;
-},{"react":"node_modules/react/index.js","../styles/home.css":"styles/home.css","./scripts/Functions.ts":"src/scripts/Functions.ts"}],"styles/numberGen.css":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","../styles/home.css":"styles/home.css","./scripts/Functions.ts":"src/scripts/Functions.ts"}],"styles/number.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
@@ -37249,7 +37249,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var _react = _interopRequireDefault(require("react"));
 require("../../styles/styles.css");
-require("../../styles/numberGen.css");
+require("../../styles/number.css");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 //L E T T E R   G E N E R A T O R
 //--------------------------------
@@ -37273,9 +37273,11 @@ function NumberGenerator() {
     id: "wrapper",
     className: "App"
   }, /*#__PURE__*/_react.default.createElement("h1", {
-    className: "title",
+    className: "n_title",
     "data-text": vars.TITLE
-  }, vars.TITLE), /*#__PURE__*/_react.default.createElement("div", {
+  }, vars.TITLE), /*#__PURE__*/_react.default.createElement("p", {
+    className: "heading"
+  }, "Generate a random number"), /*#__PURE__*/_react.default.createElement("div", {
     className: "NumberArea"
   }, /*#__PURE__*/_react.default.createElement("p", {
     className: "randomNumber"
@@ -37291,7 +37293,7 @@ function NumberGenerator() {
 //---  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 //---[ EXPORTS ]---\\
 var _default = exports.default = NumberGenerator; //-------------------
-},{"react":"node_modules/react/index.js","../../styles/styles.css":"styles/styles.css","../../styles/numberGen.css":"styles/numberGen.css"}],"index.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","../../styles/styles.css":"styles/styles.css","../../styles/number.css":"styles/number.css"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -37359,7 +37361,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59774" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58985" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
