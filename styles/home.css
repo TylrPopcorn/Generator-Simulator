@@ -27,7 +27,7 @@
   }
 }
 
-@keyframes glowing {
+@keyframes title_Glow1 {
   /* Responsible for making the title glow effect*/
   0% {
     text-shadow: 0px 0px 18px;
@@ -74,21 +74,22 @@
 
 .title.colorAnimation {
   /* animation: colorChange 12s infinite;   */
-  animation: colorChange 17s infinite linear, glowing 7s infinite ease-in-out; /* Combine animations */
+  animation: colorChange 17s infinite linear,
+    title_Glow1 7s infinite ease-in-out; /* Combine animations */
 }
 
 .title.option_1 {
-  animation: glowing 7s infinite;
+  animation: title_Glow1 7s infinite;
   color: var(--option1);
 }
 
 .title.option_2 {
-  animation: glowing 5s infinite;
+  animation: title_Glow1 5s infinite;
   color: var(--option2);
 }
 
 .title.option_3 {
-  animation: glowing 9s infinite;
+  animation: title_Glow1 9s infinite;
   color: var(--option3);
 }
 

@@ -22,14 +22,16 @@ function NumberGenerator() {
   return (
     <div id="wrapper" className="App">
       {/*---- TITLE ----*/}
-      <h1 className="n_title" data-text={vars.TITLE}>
+      <h1 className="title" data-text={vars.TITLE}>
         {vars.TITLE}
       </h1>
       <p className="heading">Generate a random number</p>
 
       {/*---- NUMBER AREA ---- */}
       <div className="NumberArea">
-        <p className="randomNumber">0</p>
+        <div className="NumberHolder">
+          <p className="randomNumber">0</p>
+        </div>
       </div>
 
       {/*---- BUTTON ----*/}

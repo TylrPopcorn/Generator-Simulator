@@ -37273,15 +37273,17 @@ function NumberGenerator() {
     id: "wrapper",
     className: "App"
   }, /*#__PURE__*/_react.default.createElement("h1", {
-    className: "n_title",
+    className: "title",
     "data-text": vars.TITLE
   }, vars.TITLE), /*#__PURE__*/_react.default.createElement("p", {
     className: "heading"
   }, "Generate a random number"), /*#__PURE__*/_react.default.createElement("div", {
     className: "NumberArea"
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "NumberHolder"
   }, /*#__PURE__*/_react.default.createElement("p", {
     className: "randomNumber"
-  }, "0")), /*#__PURE__*/_react.default.createElement("div", {
+  }, "0"))), /*#__PURE__*/_react.default.createElement("div", {
     className: "ButtonHolder"
   }, /*#__PURE__*/_react.default.createElement("button", {
     className: "GenerateButton"
@@ -37361,7 +37363,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58985" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59990" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
