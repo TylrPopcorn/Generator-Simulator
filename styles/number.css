@@ -1,14 +1,64 @@
 /* ALL of 'NUMBER GENERATOR' related styling*/
 /**/
 /**/
+:root {
+  --text-stroke-color: yellow;
+}
 
-.n_title {
-  margin-top: 2.8%;
-  font-size: clamp(16px, 1vw, 36px); /* min, preferred, max */
-  font-weight: bold;
+@keyframes title_Glow2 {
+  0% {
+    text-shadow: 0px 0px 15px var(--text-stroke-color);
+  }
+  50% {
+    text-shadow: 0px 0px 30px var(--text-stroke-color);
+  }
+  100% {
+    text-shadow: 0px 0px 15px var(--text-stroke-color);
+  }
+}
 
-  -webkit-text-stroke: 0.1px rgb(0, 0, 0);
-  text-shadow: 0px 0px 9px rgb(255, 255, 255);
+#wrapper {
+}
 
-  transition: 0.8s;
+.title {
+  animation: title_Glow2 7s infinite;
+}
+
+.NumberArea {
+  margin-top: 3%;
+  /* background-color: rgb(255, 255, 255); */
+
+  height: 50%;
+  width: 20%;
+  /* width: calc(35% - 15%); */
+
+  /* Centering text vertically and horizontally */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.NumberHolder {
+  height: 100%;
+  width: 100%;
+  font-size: 15vh;
+
+  text-shadow: 0px 0px 5px #000, /* Black text stroke */ 0px 0px 2px #000;
+
+  border-radius: 100%;
+  border: 2px solid rgb(255, 255, 255);
+
+  box-shadow: 0px 0px 2.5vh rgb(243, 243, 243);
+  transition: box-shadow 1s ease;
+
+  background: radial-gradient(
+    ellipse at center,
+    rgb(255, 255, 255) 0%,
+    rgba(19, 240, 85, 0) 70%
+  );
+
+  /* Centering text vertically and horizontally */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
