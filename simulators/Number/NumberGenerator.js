@@ -1,8 +1,9 @@
-//L E T T E R   G E N E R A T O R
+//N U M B E R   G E N E R A T O R
 //--------------------------------
+import React, { useState } from "react";
 
 //imports:]--
-import React from "react";
+import Functions from "./scripts/Functions";
 
 //styles:]--
 import "../../styles/styles.css";
@@ -19,6 +20,16 @@ let vars = {
 
 //------[ MAIN COMPONENT ]------\\
 function NumberGenerator() {
+  //-----vars:
+  const [num, setNum] = useState(0);
+
+  const Clicked = () => {
+    //Each time the button gets clicked on.
+    //---------------------
+    Functions.Clicked();
+  };
+
+  //----HTML:
   return (
     <div id="wrapper" className="App">
       {/*---- TITLE ----*/}
@@ -30,13 +41,15 @@ function NumberGenerator() {
       {/*---- NUMBER AREA ---- */}
       <div className="NumberArea">
         <div className="NumberHolder">
-          <p className="randomNumber">0</p>
+          <p className="randomNumber">{num}</p>
         </div>
       </div>
 
       {/*---- BUTTON ----*/}
       <div className="ButtonHolder">
-        <button className="GenerateButton">Generate</button>
+        <button className="GenerateButton" onClick={Clicked}>
+          Generate
+        </button>
       </div>
 
       {/*---- BOTTOM TEXT ----*/}
