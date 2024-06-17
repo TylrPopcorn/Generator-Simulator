@@ -25,11 +25,13 @@
 }
 
 .NumberArea {
-  margin-top: 3%;
+  margin-top: 2%;
   /* background-color: rgb(255, 255, 255); */
 
-  height: 50%;
-  width: 20%;
+  /* height: 50%; */
+  /* width: 20%; */
+  height: 50vh;
+  width: 50vh;
   /* width: calc(35% - 15%); */
 
   /* Centering text vertically and horizontally */
@@ -61,4 +63,43 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/*-------------------------GENERATE BUTTON-------------------------*/
+.ButtonHolder {
+  margin-top: 2.3%;
+
+  border-radius: 20px;
+  /* background-color: rgb(53, 52, 52, 0.2); */
+  height: 8vh;
+  width: 20%; /* Stretch across the whole screen */
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.GenerateButton {
+  background-color: #2f3030;
+  color: var(--main-text-color);
+  border-radius: 5px;
+  height: 50%;
+  font-size: 1em;
+  width: 80%;
+  box-shadow: 0 0 0 var(--main-text-color);
+  transition: box-shadow 0.2s ease; /* Add a transition for box-shadow */
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  z-index: 2;
+}
+
+/*-------------------------BOTTOM TEXT-------------------------*/
+.BottomFrame {
+  position: relative;
+  margin-top: -1.4em;
+  color: var(--main-text-color);
+  font-weight: normal;
+  font-style: italic;
 }
