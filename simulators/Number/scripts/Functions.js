@@ -8,9 +8,13 @@ const Functions = {
 //----------------                  ---------[ FUNCTIONS ]--------                      ----------------------------
 //
 
-Functions["Click"] = function () {
+Functions["Clicked"] = function () {
   //Each time the button gets clicked on.
   //----------------
 
   console.log("clicked");
 };
+
+//------[ EXPORTS ]:
+export default Functions;
+//-----------------
