@@ -37237,6 +37237,12 @@ class HOME extends _react.default.Component {
 //EXPORTS:----------
 var _default = exports.default = HOME;
 },{"react":"node_modules/react/index.js","../styles/home.css":"styles/home.css","./scripts/Functions.ts":"src/scripts/Functions.ts"}],"simulators/Number/scripts/Functions.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
 //All background functions that support the main numberGenerator file.
 
 const Functions = {
@@ -37247,12 +37253,15 @@ const Functions = {
 //----------------                  ---------[ FUNCTIONS ]--------                      ----------------------------
 //
 
-Functions["Click"] = function () {
+Functions["Clicked"] = function () {
   //Each time the button gets clicked on.
   //----------------
 
   console.log("clicked");
 };
+
+//------[ EXPORTS ]:
+var _default = exports.default = Functions; //-----------------
 },{}],"styles/number.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 module.hot.dispose(reloadCSS);
@@ -37393,7 +37402,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63101" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59444" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

@@ -428,6 +428,7 @@ body {
 /**/
 :root {
   --text-stroke-color: yellow;
+  --main-text-color: rgb(243, 216, 60);
 }
 
 @keyframes title_Glow2 {
@@ -442,10 +443,8 @@ body {
   }
 }
 
-#wrapper {
-}
-
 .title {
+  color: var(--main-text-color);
   animation: title_Glow2 7s infinite;
 }
 
@@ -473,14 +472,14 @@ body {
   text-shadow: 0px 0px 5px #000, /* Black text stroke */ 0px 0px 2px #000;
 
   border-radius: 100%;
-  border: 2px solid rgb(255, 255, 255);
+  border: 2px solid var(--main-text-color);
 
-  box-shadow: 0px 0px 2.5vh rgb(243, 243, 243);
+  box-shadow: 0px 0px 2.5vh var(--main-text-color);
   transition: box-shadow 1s ease;
 
   background: radial-gradient(
     ellipse at center,
-    rgb(255, 255, 255) 0%,
+    var(--main-text-color) 0%,
     rgba(19, 240, 85, 0) 70%
   );
 
@@ -518,6 +517,11 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
   z-index: 2;
+}
+
+.GenerateButton:hover {
+  box-shadow: 0 0 15px var(--main-text-color);
+  background-color: #141414;
 }
 
 /*-------------------------BOTTOM TEXT-------------------------*/
