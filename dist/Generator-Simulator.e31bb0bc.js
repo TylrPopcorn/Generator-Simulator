@@ -37256,8 +37256,25 @@ const Functions = {
 Functions["Clicked"] = function () {
   //Each time the button gets clicked on.
   //----------------
+  const NumberHolder = document.querySelector(".NumberHolder");
+  const Numb = document.querySelector(".randomNumber"); //grab number area.
 
-  console.log("clicked");
+  if (NumberHolder.classList.contains("shadowed") || Numb.classList.contains("fade")) {
+    //If the function is already running, then end here.
+    return;
+  }
+
+  //Fade/Shadow effects (ADD):
+  Numb.classList.add("fade");
+  NumberHolder.classList.add("shadowed");
+
+  // Remove the 'shadowed' class after the transition completes
+  setTimeout(() => {
+    if (NumberHolder.classList.contains("shadowed") || Numb.classList.contains("fade")) {
+      Numb.classList.remove("fade");
+      NumberHolder.classList.remove("shadowed");
+    }
+  }, 1100);
 };
 
 //------[ EXPORTS ]:
@@ -37273,13 +37290,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _react = _interopRequireWildcard(require("react"));
+var _react = _interopRequireDefault(require("react"));
 var _Functions = _interopRequireDefault(require("./scripts/Functions"));
 require("../../styles/styles.css");
 require("../../styles/number.css");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
-function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
 //N U M B E R   G E N E R A T O R
 //--------------------------------
 
@@ -37299,11 +37314,15 @@ let vars = {
 //------[ MAIN COMPONENT ]------\\
 function NumberGenerator() {
   //-----vars:
-  const [num, setNum] = (0, _react.useState)(0);
+  // const [num, setNum] = useState(0);
+
   const Clicked = () => {
     //Each time the button gets clicked on.
     //---------------------
-    _Functions.default.Clicked();
+    const randomNumber = Math.floor(Math.random() * 100) + 1; //generate a random number
+    // setNum(randomNumber);
+
+    _Functions.default["Clicked"](); //fx.
   };
 
   //----HTML:
@@ -37321,7 +37340,7 @@ function NumberGenerator() {
     className: "NumberHolder"
   }, /*#__PURE__*/_react.default.createElement("p", {
     className: "randomNumber"
-  }, num))), /*#__PURE__*/_react.default.createElement("div", {
+  }, 0))), /*#__PURE__*/_react.default.createElement("div", {
     className: "ButtonHolder"
   }, /*#__PURE__*/_react.default.createElement("button", {
     className: "GenerateButton",
@@ -37334,7 +37353,48 @@ function NumberGenerator() {
 //---  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 //---[ EXPORTS ]---\\
 var _default = exports.default = NumberGenerator; //-------------------
-},{"react":"node_modules/react/index.js","./scripts/Functions":"simulators/Number/scripts/Functions.js","../../styles/styles.css":"styles/styles.css","../../styles/number.css":"styles/number.css"}],"index.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./scripts/Functions":"simulators/Number/scripts/Functions.js","../../styles/styles.css":"styles/styles.css","../../styles/number.css":"styles/number.css"}],"state/Context.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = exports.MyContext = void 0;
+var _react = _interopRequireWildcard(require("react"));
+function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
+function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
+//Reducer to help regulate state
+//-----
+
+//----variables
+const MyContext = exports.MyContext = _react.default.createContext();
+const initialData = {
+  dummyData: "abc123" //dummy data
+};
+
+//-----[ FUNCTIONS ]:
+const MyContextProvider = ({
+  children
+}) => {
+  const [data, setData] = (0, _react.useState)(initialData);
+
+  //Function that will update data:
+  const Dispatch = newValue => {
+    setData(newValue); //useState
+  };
+
+  //return data:
+  return /*#__PURE__*/_react.default.createElement(MyContext.Provider, {
+    value: {
+      data,
+      Dispatch
+    }
+  }, children);
+};
+
+//EXPORTS----------
+var _default = exports.default = MyContextProvider;
+},{"react":"node_modules/react/index.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -37344,6 +37404,7 @@ require("./styles/styles.css");
 var _Redirect = _interopRequireDefault(require("./src/Redirect"));
 var _HOME = _interopRequireDefault(require("./src/HOME"));
 var _NumberGenerator = _interopRequireDefault(require("./simulators/Number/NumberGenerator"));
+var _Context = _interopRequireDefault(require("./state/Context"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 //Generator Simulator. 3 Generators combined into 1 website.
 //imports:]--
@@ -37366,7 +37427,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //----
 
 const root = _client.default.createRoot(document.getElementById("root"));
-root.render( /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Routes, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
+root.render( /*#__PURE__*/_react.default.createElement(_Context.default, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Routes, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
   path: "/",
   element: /*#__PURE__*/_react.default.createElement(_HOME.default, null)
 }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
@@ -37376,8 +37437,8 @@ root.render( /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRo
 }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
   path: "*",
   element: /*#__PURE__*/_react.default.createElement(_Redirect.default, null)
-}))));
-},{"react":"node_modules/react/index.js","react-dom/client":"node_modules/react-dom/client.js","react-router-dom":"node_modules/react-router-dom/dist/index.js","./styles/styles.css":"styles/styles.css","./src/Redirect":"src/Redirect.js","./src/HOME":"src/HOME.js","./simulators/Number/NumberGenerator":"simulators/Number/NumberGenerator.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+})))));
+},{"react":"node_modules/react/index.js","react-dom/client":"node_modules/react-dom/client.js","react-router-dom":"node_modules/react-router-dom/dist/index.js","./styles/styles.css":"styles/styles.css","./src/Redirect":"src/Redirect.js","./src/HOME":"src/HOME.js","./simulators/Number/NumberGenerator":"simulators/Number/NumberGenerator.js","./state/Context":"state/Context.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -37402,7 +37463,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59444" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61573" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
