@@ -19,6 +19,7 @@ import "./styles/styles.css";
 import Redirect from "./src/Redirect";
 import HOME from "./src/HOME";
 import NumberGenerator from "./simulators/Number/NumberGenerator";
+import MyContextProvider from "./state/Context";
 //
 
 //vars:
@@ -26,19 +27,21 @@ import NumberGenerator from "./simulators/Number/NumberGenerator";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <BrowserRouter>
-    {/* LOGOUT BUTTON WOULD GO HERE*/}
-    {/*----------------------------*/}
-    {/*----------         ---------*/}
-    {/*----------------------------*/}
-    <Routes>
-      {/* ROUTES */}
-      <Route path="/" element={<HOME />} />
-      <Route exact path="Number" element={<NumberGenerator />} />
-
-      {/* ----- Catch all unknown pages ----- */}
-      <Route path="*" element={<Redirect />} />
+  <MyContextProvider>
+    <BrowserRouter>
+      {/* LOGOUT BUTTON WOULD GO HERE*/}
       {/*----------------------------*/}
-    </Routes>
-  </BrowserRouter>
+      {/*----------         ---------*/}
+      {/*----------------------------*/}
+      <Routes>
+        {/* ROUTES */}
+        <Route path="/" element={<HOME />} />
+        <Route exact path="Number" element={<NumberGenerator />} />
+
+        {/* ----- Catch all unknown pages ----- */}
+        <Route path="*" element={<Redirect />} />
+        {/*----------------------------*/}
+      </Routes>
+    </BrowserRouter>
+  </MyContextProvider>
 );
