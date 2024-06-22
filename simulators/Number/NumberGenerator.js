@@ -1,9 +1,11 @@
 //N U M B E R   G E N E R A T O R
 //--------------------------------
-import React from "react";
+import React, { useState, useContext } from "react";
 
 //imports:]--
 import Functions from "./scripts/Functions";
+import { MyContext } from "../../state/Context";
+import wait from "./scripts/wait";
 
 //styles:]--
 import "../../styles/styles.css";
@@ -21,18 +23,27 @@ let vars = {
 //------[ MAIN COMPONENT ]------\\
 function NumberGenerator() {
   //-----vars:
-  // const [num, setNum] = useState(0);
+  const [letterGenerating, setLetterGenerating] = useState(false); //Used to keep track of random number generating.
+  const { data, Dispatch } = useContext(MyContext); //state
 
+  //Each time the button gets clicked on.
+  //---------------------
   const Clicked = () => {
-    //Each time the button gets clicked on.
-    //---------------------
-    const randomNumber = Math.floor(Math.random() * 100) + 1; //generate a random number
-    // setNum(randomNumber);
+    if (letterGenerating === false) {
+      setLetterGenerating(true);
 
-    Functions["Clicked"](); //fx.
+      const randomNumber = Math.floor(Math.random() * 100) + 1; //generate a random number
+      Dispatch({ currentNumber: randomNumber });
+
+      Functions["Clicked"](); //fx.
+
+      wait(1700).then(() => {
+        setLetterGenerating(false);
+      });
+    }
   };
 
-  //----HTML:
+  //----HTML: -----------
   return (
     <div id="wrapper" className="App">
       {/*---- TITLE ----*/}
@@ -44,7 +55,7 @@ function NumberGenerator() {
       {/*---- NUMBER AREA ---- */}
       <div className="NumberArea">
         <div className="NumberHolder">
-          <p className="randomNumber">{0}</p>
+          <p className="randomNumber">{data.currentNumber}</p>
         </div>
       </div>
 

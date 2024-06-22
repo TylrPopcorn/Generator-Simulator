@@ -6,6 +6,8 @@ import React, { useState } from "react";
 export const MyContext = React.createContext();
 const initialData = {
   dummyData: "abc123", //dummy data
+
+  currentNumber: 0,
 };
 
 //-----[ FUNCTIONS ]:
