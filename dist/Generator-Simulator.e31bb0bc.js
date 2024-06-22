@@ -37236,15 +37236,32 @@ class HOME extends _react.default.Component {
 
 //EXPORTS:----------
 var _default = exports.default = HOME;
-},{"react":"node_modules/react/index.js","../styles/home.css":"styles/home.css","./scripts/Functions.ts":"src/scripts/Functions.ts"}],"simulators/Number/scripts/Functions.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","../styles/home.css":"styles/home.css","./scripts/Functions.ts":"src/scripts/Functions.ts"}],"simulators/Number/scripts/wait.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+// This function will wait for the specified time in milliseconds.
+function wait(time) {
+  return new Promise(function (resolve) {
+    setTimeout(resolve, time);
+  });
+}
+exports.default = wait;
+},{}],"simulators/Number/scripts/Functions.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+var _wait = _interopRequireDefault(require("./wait"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 //All background functions that support the main numberGenerator file.
+//--- imports:]
 
+//
 const Functions = {
   //All exported functions within one place.
 };
@@ -37252,108 +37269,26 @@ const Functions = {
 //----------------                  ------------------------------                      ----------------------------
 //----------------                  ---------[ FUNCTIONS ]--------                      ----------------------------
 //
-
 Functions["Clicked"] = function () {
   //Each time the button gets clicked on.
   //----------------
   const NumberHolder = document.querySelector(".NumberHolder");
   const Numb = document.querySelector(".randomNumber"); //grab number area.
 
-  if (NumberHolder.classList.contains("shadowed") || Numb.classList.contains("fade")) {
-    //If the function is already running, then end here.
-    return;
-  }
-
   //Fade/Shadow effects (ADD):
   Numb.classList.add("fade");
   NumberHolder.classList.add("shadowed");
-
-  // Remove the 'shadowed' class after the transition completes
-  setTimeout(() => {
+  (0, _wait.default)(1100).then(() => {
     if (NumberHolder.classList.contains("shadowed") || Numb.classList.contains("fade")) {
       Numb.classList.remove("fade");
       NumberHolder.classList.remove("shadowed");
     }
-  }, 1100);
+  });
 };
 
 //------[ EXPORTS ]:
 var _default = exports.default = Functions; //-----------------
-},{}],"styles/number.css":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"simulators/Number/NumberGenerator.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _react = _interopRequireDefault(require("react"));
-var _Functions = _interopRequireDefault(require("./scripts/Functions"));
-require("../../styles/styles.css");
-require("../../styles/number.css");
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-//N U M B E R   G E N E R A T O R
-//--------------------------------
-
-//imports:]--
-
-//styles:]--
-
-//vars:]--------
-let vars = {
-  TITLE: "NUMBER GENERATOR" /* Title of the page */
-
-  //--add more variables here:--
-  //--
-  //--
-};
-
-//------[ MAIN COMPONENT ]------\\
-function NumberGenerator() {
-  //-----vars:
-  // const [num, setNum] = useState(0);
-
-  const Clicked = () => {
-    //Each time the button gets clicked on.
-    //---------------------
-    const randomNumber = Math.floor(Math.random() * 100) + 1; //generate a random number
-    // setNum(randomNumber);
-
-    _Functions.default["Clicked"](); //fx.
-  };
-
-  //----HTML:
-  return /*#__PURE__*/_react.default.createElement("div", {
-    id: "wrapper",
-    className: "App"
-  }, /*#__PURE__*/_react.default.createElement("h1", {
-    className: "title",
-    "data-text": vars.TITLE
-  }, vars.TITLE), /*#__PURE__*/_react.default.createElement("p", {
-    className: "heading"
-  }, "Generate a random number"), /*#__PURE__*/_react.default.createElement("div", {
-    className: "NumberArea"
-  }, /*#__PURE__*/_react.default.createElement("div", {
-    className: "NumberHolder"
-  }, /*#__PURE__*/_react.default.createElement("p", {
-    className: "randomNumber"
-  }, 0))), /*#__PURE__*/_react.default.createElement("div", {
-    className: "ButtonHolder"
-  }, /*#__PURE__*/_react.default.createElement("button", {
-    className: "GenerateButton",
-    onClick: Clicked
-  }, "Generate")), /*#__PURE__*/_react.default.createElement("div", {
-    className: "BottomFrame"
-  }, /*#__PURE__*/_react.default.createElement("p", null, "Click the button above to generate a random number")));
-}
-
-//---  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-//---[ EXPORTS ]---\\
-var _default = exports.default = NumberGenerator; //-------------------
-},{"react":"node_modules/react/index.js","./scripts/Functions":"simulators/Number/scripts/Functions.js","../../styles/styles.css":"styles/styles.css","../../styles/number.css":"styles/number.css"}],"state/Context.js":[function(require,module,exports) {
+},{"./wait":"simulators/Number/scripts/wait.ts"}],"state/Context.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -37369,7 +37304,10 @@ function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; 
 //----variables
 const MyContext = exports.MyContext = _react.default.createContext();
 const initialData = {
-  dummyData: "abc123" //dummy data
+  dummyData: "abc123",
+  //dummy data
+
+  currentNumber: 0
 };
 
 //-----[ FUNCTIONS ]:
@@ -37394,7 +37332,97 @@ const MyContextProvider = ({
 
 //EXPORTS----------
 var _default = exports.default = MyContextProvider;
-},{"react":"node_modules/react/index.js"}],"index.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js"}],"styles/number.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"simulators/Number/NumberGenerator.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _react = _interopRequireWildcard(require("react"));
+var _Functions = _interopRequireDefault(require("./scripts/Functions"));
+var _Context = require("../../state/Context");
+var _wait = _interopRequireDefault(require("./scripts/wait"));
+require("../../styles/styles.css");
+require("../../styles/number.css");
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
+function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
+//N U M B E R   G E N E R A T O R
+//--------------------------------
+
+//imports:]--
+
+//styles:]--
+
+//vars:]--------
+let vars = {
+  TITLE: "NUMBER GENERATOR" /* Title of the page */
+
+  //--add more variables here:--
+  //--
+  //--
+};
+
+//------[ MAIN COMPONENT ]------\\
+function NumberGenerator() {
+  //-----vars:
+  const [letterGenerating, setLetterGenerating] = (0, _react.useState)(false); //Used to keep track of random number generating.
+  const {
+    data,
+    Dispatch
+  } = (0, _react.useContext)(_Context.MyContext); //state
+
+  //Each time the button gets clicked on.
+  //---------------------
+  const Clicked = () => {
+    if (letterGenerating === false) {
+      setLetterGenerating(true);
+      const randomNumber = Math.floor(Math.random() * 100) + 1; //generate a random number
+      Dispatch({
+        currentNumber: randomNumber
+      });
+      _Functions.default["Clicked"](); //fx.
+
+      (0, _wait.default)(1700).then(() => {
+        setLetterGenerating(false);
+      });
+    }
+  };
+
+  //----HTML: -----------
+  return /*#__PURE__*/_react.default.createElement("div", {
+    id: "wrapper",
+    className: "App"
+  }, /*#__PURE__*/_react.default.createElement("h1", {
+    className: "title",
+    "data-text": vars.TITLE
+  }, vars.TITLE), /*#__PURE__*/_react.default.createElement("p", {
+    className: "heading"
+  }, "Generate a random number"), /*#__PURE__*/_react.default.createElement("div", {
+    className: "NumberArea"
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "NumberHolder"
+  }, /*#__PURE__*/_react.default.createElement("p", {
+    className: "randomNumber"
+  }, data.currentNumber))), /*#__PURE__*/_react.default.createElement("div", {
+    className: "ButtonHolder"
+  }, /*#__PURE__*/_react.default.createElement("button", {
+    className: "GenerateButton",
+    onClick: Clicked
+  }, "Generate")), /*#__PURE__*/_react.default.createElement("div", {
+    className: "BottomFrame"
+  }, /*#__PURE__*/_react.default.createElement("p", null, "Click the button above to generate a random number")));
+}
+
+//---  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+//---[ EXPORTS ]---\\
+var _default = exports.default = NumberGenerator; //-------------------
+},{"react":"node_modules/react/index.js","./scripts/Functions":"simulators/Number/scripts/Functions.js","../../state/Context":"state/Context.js","./scripts/wait":"simulators/Number/scripts/wait.ts","../../styles/styles.css":"styles/styles.css","../../styles/number.css":"styles/number.css"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -37463,7 +37491,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61573" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50155" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

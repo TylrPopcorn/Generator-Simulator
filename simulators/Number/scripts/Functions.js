@@ -1,5 +1,7 @@
 //All background functions that support the main numberGenerator file.
-
+//--- imports:]
+import wait from "./wait";
+//
 const Functions = {
   //All exported functions within one place.
 };
@@ -7,27 +9,17 @@ const Functions = {
 //----------------                  ------------------------------                      ----------------------------
 //----------------                  ---------[ FUNCTIONS ]--------                      ----------------------------
 //
-
 Functions["Clicked"] = function () {
   //Each time the button gets clicked on.
   //----------------
   const NumberHolder = document.querySelector(".NumberHolder");
   const Numb = document.querySelector(".randomNumber"); //grab number area.
 
-  if (
-    NumberHolder.classList.contains("shadowed") ||
-    Numb.classList.contains("fade")
-  ) {
-    //If the function is already running, then end here.
-    return;
-  }
-
   //Fade/Shadow effects (ADD):
   Numb.classList.add("fade");
   NumberHolder.classList.add("shadowed");
 
-  // Remove the 'shadowed' class after the transition completes
-  setTimeout(() => {
+  wait(1100).then(() => {
     if (
       NumberHolder.classList.contains("shadowed") ||
       Numb.classList.contains("fade")
@@ -35,7 +27,7 @@ Functions["Clicked"] = function () {
       Numb.classList.remove("fade");
       NumberHolder.classList.remove("shadowed");
     }
-  }, 1100);
+  });
 };
 
 //------[ EXPORTS ]:
