@@ -426,25 +426,20 @@ body {
 /* ALL of 'NUMBER GENERATOR' related styling*/
 /**/
 /**/
-:root {
-  --text-stroke-color: yellow;
-  --main-text-color: rgb(243, 216, 60);
-}
-
 @keyframes title_Glow2 {
   0% {
-    text-shadow: 0px 0px 15px var(--text-stroke-color);
+    text-shadow: 0px 0px 15px var(--option1_accent);
   }
   50% {
-    text-shadow: 0px 0px 30px var(--text-stroke-color);
+    text-shadow: 0px 0px 30px var(--option1_accent);
   }
   100% {
-    text-shadow: 0px 0px 15px var(--text-stroke-color);
+    text-shadow: 0px 0px 15px var(--option1_accent);
   }
 }
 
 .title {
-  color: var(--main-text-color);
+  color: var(--option1);
   animation: title_Glow2 7s infinite;
 }
 
@@ -472,14 +467,14 @@ body {
   text-shadow: 0px 0px 5px #000, /* Black text stroke */ 0px 0px 2px #000;
 
   border-radius: 100%;
-  border: 2px solid var(--main-text-color);
+  border: 2px solid var(--option1);
 
-  box-shadow: 0px 0px 2.5vh var(--main-text-color);
+  box-shadow: 0px 0px 2.5vh var(--option1);
   transition: box-shadow 1s ease;
 
   background: radial-gradient(
     ellipse at center,
-    var(--main-text-color) 0%,
+    var(--option1) 0%,
     rgba(19, 240, 85, 0) 70%
   );
 
@@ -490,8 +485,8 @@ body {
 }
 
 .NumberHolder.shadowed {
-  box-shadow: 0px 0px 7vh var(--main-text-color); /* Updated box-shadow */
-  border: 2px solid var(--main-text-color); /* Updated border color */
+  box-shadow: 0px 0px 7vh var(--option1); /* Updated box-shadow */
+  border: 2px solid var(--option1); /* Updated border color */
 }
 
 .NumberHolder .randomNumber {
@@ -519,12 +514,12 @@ body {
 
 .GenerateButton {
   background-color: #2f3030;
-  color: var(--main-text-color);
+  color: var(--option1);
   border-radius: 5px;
   height: 50%;
   font-size: 1em;
   width: 80%;
-  box-shadow: 0 0 0 var(--main-text-color);
+  box-shadow: 0 0 0 var(--option1);
   transition: box-shadow 0.2s ease; /* Add a transition for box-shadow */
 
   white-space: nowrap;
@@ -534,7 +529,7 @@ body {
 }
 
 .GenerateButton:hover {
-  box-shadow: 0 0 15px var(--main-text-color);
+  box-shadow: 0 0 15px var(--option1);
   background-color: #141414;
 }
 
@@ -542,7 +537,7 @@ body {
 .BottomFrame {
   position: relative;
   margin-top: -1.4em;
-  color: var(--main-text-color);
+  color: var(--option1);
   font-weight: normal;
   font-style: italic;
 }

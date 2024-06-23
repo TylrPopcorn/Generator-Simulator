@@ -37180,6 +37180,10 @@ let vars = {
 class HOME extends _react.default.Component {
   //
   //
+  MouseClicked = event => {
+    //Each time a button gets clicked on.
+    const button = event.currentTarget;
+  };
   MouseEnter = event => {
     //Each time the mouse enters a button
     const button = event.currentTarget;
@@ -37249,45 +37253,52 @@ function wait(time) {
   });
 }
 exports.default = wait;
-},{}],"simulators/Number/scripts/Functions.js":[function(require,module,exports) {
+},{}],"simulators/Number/scripts/Functions.ts":[function(require,module,exports) {
 "use strict";
 
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
-var _wait = _interopRequireDefault(require("./wait"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 //All background functions that support the main numberGenerator file.
-//--- imports:]
-
-//
-const Functions = {
-  //All exported functions within one place.
+//--[ IMPORTS ]:--
+var wait_1 = __importDefault(require("./wait"));
+//-----[ VARIABLES ]:-----
+var Functions = {
+  //All returning functions in one place.
+  //-----------------------------------
+  // func Clicked()
 };
-
 //----------------                  ------------------------------                      ----------------------------
 //----------------                  ---------[ FUNCTIONS ]--------                      ----------------------------
 //
 Functions["Clicked"] = function () {
   //Each time the button gets clicked on.
   //----------------
-  const NumberHolder = document.querySelector(".NumberHolder");
-  const Numb = document.querySelector(".randomNumber"); //grab number area.
-
-  //Fade/Shadow effects (ADD):
+  var NumberHolder = document.querySelector(".NumberHolder");
+  var Numb = document.querySelector(".randomNumber");
+  // Ensure elements are found
+  if (!NumberHolder || !Numb) {
+    throw new Error("Cannot find corresponding HTML Elements");
+  }
+  //Fade | Shadow effects:
   Numb.classList.add("fade");
   NumberHolder.classList.add("shadowed");
-  (0, _wait.default)(1100).then(() => {
+  (0, wait_1.default)(1100).then(function () {
     if (NumberHolder.classList.contains("shadowed") || Numb.classList.contains("fade")) {
       Numb.classList.remove("fade");
       NumberHolder.classList.remove("shadowed");
     }
   });
 };
-
-//------[ EXPORTS ]:
-var _default = exports.default = Functions; //-----------------
+//----------------                  ------------------------------                      ----------------------------
+//-----[ EXPORTS ]: --]
+exports.default = Functions;
+//---------------------
 },{"./wait":"simulators/Number/scripts/wait.ts"}],"state/Context.js":[function(require,module,exports) {
 "use strict";
 
@@ -37307,7 +37318,8 @@ const initialData = {
   dummyData: "abc123",
   //dummy data
 
-  currentNumber: 0
+  currentNumber: 0,
+  Number_Generator: false
 };
 
 //-----[ FUNCTIONS ]:
@@ -37344,7 +37356,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _react = _interopRequireWildcard(require("react"));
-var _Functions = _interopRequireDefault(require("./scripts/Functions"));
+var _reactRouterDom = require("react-router-dom");
+var _Functions = _interopRequireDefault(require("./scripts/Functions.ts"));
 var _Context = require("../../state/Context");
 var _wait = _interopRequireDefault(require("./scripts/wait"));
 require("../../styles/styles.css");
@@ -37371,11 +37384,12 @@ let vars = {
 //------[ MAIN COMPONENT ]------\\
 function NumberGenerator() {
   //-----vars:
-  const [letterGenerating, setLetterGenerating] = (0, _react.useState)(false); //Used to keep track of random number generating.
+  const [letterGenerating, setLetterGenerating] = (0, _react.useState)(false); //debounce.
   const {
     data,
     Dispatch
-  } = (0, _react.useContext)(_Context.MyContext); //state
+  } = (0, _react.useContext)(_Context.MyContext); //global state
+  const navigate = (0, _reactRouterDom.useNavigate)(); //Used to redirect the user.
 
   //Each time the button gets clicked on.
   //---------------------
@@ -37393,6 +37407,15 @@ function NumberGenerator() {
       });
     }
   };
+
+  //Each time the page loads.
+  //--------------------
+  (0, _react.useEffect)(() => {
+    //authentication check:
+    if (data.Number_Generator === false) {
+      navigate("/");
+    }
+  });
 
   //----HTML: -----------
   return /*#__PURE__*/_react.default.createElement("div", {
@@ -37422,7 +37445,7 @@ function NumberGenerator() {
 //---  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 //---[ EXPORTS ]---\\
 var _default = exports.default = NumberGenerator; //-------------------
-},{"react":"node_modules/react/index.js","./scripts/Functions":"simulators/Number/scripts/Functions.js","../../state/Context":"state/Context.js","./scripts/wait":"simulators/Number/scripts/wait.ts","../../styles/styles.css":"styles/styles.css","../../styles/number.css":"styles/number.css"}],"index.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/dist/index.js","./scripts/Functions.ts":"simulators/Number/scripts/Functions.ts","../../state/Context":"state/Context.js","./scripts/wait":"simulators/Number/scripts/wait.ts","../../styles/styles.css":"styles/styles.css","../../styles/number.css":"styles/number.css"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -37491,7 +37514,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50155" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56860" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

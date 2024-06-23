@@ -20,6 +20,11 @@ let vars = {
 class HOME extends React.Component {
   //
   //
+  MouseClicked = (event) => {
+    //Each time a button gets clicked on.
+    const button = event.currentTarget;
+  };
+
   MouseEnter = (event) => {
     //Each time the mouse enters a button
     const button = event.currentTarget;

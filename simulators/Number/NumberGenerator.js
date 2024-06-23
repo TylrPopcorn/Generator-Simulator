@@ -1,9 +1,10 @@
 //N U M B E R   G E N E R A T O R
 //--------------------------------
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 //imports:]--
-import Functions from "./scripts/Functions";
+import Functions from "./scripts/Functions.ts";
 import { MyContext } from "../../state/Context";
 import wait from "./scripts/wait";
 
@@ -23,8 +24,9 @@ let vars = {
 //------[ MAIN COMPONENT ]------\\
 function NumberGenerator() {
   //-----vars:
-  const [letterGenerating, setLetterGenerating] = useState(false); //Used to keep track of random number generating.
-  const { data, Dispatch } = useContext(MyContext); //state
+  const [letterGenerating, setLetterGenerating] = useState(false); //debounce.
+  const { data, Dispatch } = useContext(MyContext); //global state
+  const navigate = useNavigate(); //Used to redirect the user.
 
   //Each time the button gets clicked on.
   //---------------------
@@ -42,6 +44,15 @@ function NumberGenerator() {
       });
     }
   };
+
+  //Each time the page loads.
+  //--------------------
+  useEffect(() => {
+    //authentication check:
+    if (data.Number_Generator === false) {
+      navigate("/");
+    }
+  });
 
   //----HTML: -----------
   return (
