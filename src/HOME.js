@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 // THIS IS THE HOME SCREEN
 
 //imports:]--
 import "../styles/home.css";
 import Functions from "./scripts/Functions.ts";
+import { MyContext } from "../state/Context.js";
 
 //vars:]--------
 let vars = {
@@ -20,9 +22,26 @@ let vars = {
 class HOME extends React.Component {
   //
   //
+  static contextType = MyContext;
+
   MouseClicked = (event) => {
     //Each time a button gets clicked on.
     const button = event.currentTarget;
+    const { data, Dispatch } = this.context; // Get the updateData function from the context
+    const navigate = useNavigate();
+
+    const test = function () {
+      navigate("/"); //navigate back to homepage
+    };
+
+    const success = Functions["mouseClicked"]();
+    if (success === true) {
+      console.log(button.id);
+
+      Dispatch({ ...data, [button.id]: true });
+      console.log(data);
+      test();
+    }
   };
 
   MouseEnter = (event) => {
@@ -67,6 +86,7 @@ class HOME extends React.Component {
             className="2"
             onMouseEnter={this.MouseEnter}
             onMouseLeave={this.MouseLeave}
+            onClick={this.MouseClicked}
           >
             <span></span>
           </button>

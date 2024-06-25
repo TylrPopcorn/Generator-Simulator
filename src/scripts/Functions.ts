@@ -6,6 +6,7 @@ interface Vars {
   firstEntrance: boolean;
   mouseEntered: boolean;
   mouseEvent: string;
+  buttonsLocked: boolean;
 
   Letter_Option: string[];
   Number_Option: string[];
@@ -22,6 +23,7 @@ const vars: Vars = {
   firstEntrance: false, //variable to stop heading color changing at first instance
   mouseEntered: false, //used to determine if the mouse has enetered a button or not.
   mouseEvent: "", //Used for mouse title option debounce
+  buttonsLocked: false, //Used to determine if the user can click on buttons or not.
 
   Letter_Option: ["Generate a random letter", "Letter Generator"],
   Number_Option: ["Generate a random number", "Number Generator"],
@@ -215,6 +217,14 @@ Functions["mouseEntered"] = function (eventButton: HTMLElement) {
     }
     infoText.classList.add("Hide");
   };
+};
+
+//
+//
+
+//=============== [ MOUSE - clicked ] ==============\\
+Functions["mouseClicked"] = function () {
+  return true;
 };
 //
 //----------------                  ------------------------------                      ----------------------------
