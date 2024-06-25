@@ -36966,6 +36966,7 @@ var vars = {
   firstEntrance: false,
   mouseEntered: false,
   mouseEvent: "",
+  buttonsLocked: false,
   Letter_Option: ["Generate a random letter", "Letter Generator"],
   Number_Option: ["Generate a random number", "Number Generator"],
   Word_Option: ["Generate a random word", "Word Generator"]
@@ -37146,21 +37147,76 @@ Functions["mouseEntered"] = function (eventButton) {
   };
 };
 //
+//
+//=============== [ MOUSE - clicked ] ==============\\
+Functions["mouseClicked"] = function () {
+  return true;
+};
+//
 //----------------                  ------------------------------                      ----------------------------
 //-----[ EXPORTS ]: --]
 exports.default = Functions;
 //---------------------
-},{"./wait":"src/scripts/wait.ts"}],"src/HOME.js":[function(require,module,exports) {
+},{"./wait":"src/scripts/wait.ts"}],"state/Context.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = exports.MyContext = void 0;
+var _react = _interopRequireWildcard(require("react"));
+function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
+function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
+//Reducer to help regulate state
+//-----
+
+//----variables
+const MyContext = exports.MyContext = _react.default.createContext();
+const initialData = {
+  dummyData: "abc123",
+  //dummy data
+
+  currentNumber: 0,
+  Number_Option: false
+};
+
+//-----[ FUNCTIONS ]:
+const MyContextProvider = ({
+  children
+}) => {
+  const [data, setData] = (0, _react.useState)(initialData);
+
+  //Function that will update data:
+  const Dispatch = newValue => {
+    setData(newValue); //useState
+  };
+
+  //return data:
+  return /*#__PURE__*/_react.default.createElement(MyContext.Provider, {
+    value: {
+      data,
+      Dispatch
+    }
+  }, children);
+};
+
+//EXPORTS----------
+var _default = exports.default = MyContextProvider;
+},{"react":"node_modules/react/index.js"}],"src/HOME.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _react = _interopRequireDefault(require("react"));
+var _react = _interopRequireWildcard(require("react"));
+var _reactRouterDom = require("react-router-dom");
 require("../styles/home.css");
 var _Functions = _interopRequireDefault(require("./scripts/Functions.ts"));
+var _Context = require("../state/Context.js");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
+function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
 // THIS IS THE HOME SCREEN
 
 //imports:]--
@@ -37180,9 +37236,28 @@ let vars = {
 class HOME extends _react.default.Component {
   //
   //
+  static contextType = _Context.MyContext;
   MouseClicked = event => {
     //Each time a button gets clicked on.
     const button = event.currentTarget;
+    const {
+      data,
+      Dispatch
+    } = this.context; // Get the updateData function from the context
+    const navigate = (0, _reactRouterDom.useNavigate)();
+    const test = function () {
+      navigate("/"); //navigate back to homepage
+    };
+    const success = _Functions.default["mouseClicked"]();
+    if (success === true) {
+      console.log(button.id);
+      Dispatch({
+        ...data,
+        [button.id]: true
+      });
+      console.log(data);
+      test();
+    }
   };
   MouseEnter = event => {
     //Each time the mouse enters a button
@@ -37220,7 +37295,8 @@ class HOME extends _react.default.Component {
       id: "Number_Option",
       className: "2",
       onMouseEnter: this.MouseEnter,
-      onMouseLeave: this.MouseLeave
+      onMouseLeave: this.MouseLeave,
+      onClick: this.MouseClicked
     }, /*#__PURE__*/_react.default.createElement("span", null)), /*#__PURE__*/_react.default.createElement("button", {
       id: "Word_Option",
       className: "Shrink 3",
@@ -37240,7 +37316,7 @@ class HOME extends _react.default.Component {
 
 //EXPORTS:----------
 var _default = exports.default = HOME;
-},{"react":"node_modules/react/index.js","../styles/home.css":"styles/home.css","./scripts/Functions.ts":"src/scripts/Functions.ts"}],"simulators/Number/scripts/wait.ts":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/dist/index.js","../styles/home.css":"styles/home.css","./scripts/Functions.ts":"src/scripts/Functions.ts","../state/Context.js":"state/Context.js"}],"simulators/Number/scripts/wait.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -37276,6 +37352,7 @@ var Functions = {
 //----------------                  ------------------------------                      ----------------------------
 //----------------                  ---------[ FUNCTIONS ]--------                      ----------------------------
 //
+//=============== [ mouse - CLICKED ] ==============\\
 Functions["Clicked"] = function () {
   //Each time the button gets clicked on.
   //----------------
@@ -37299,52 +37376,7 @@ Functions["Clicked"] = function () {
 //-----[ EXPORTS ]: --]
 exports.default = Functions;
 //---------------------
-},{"./wait":"simulators/Number/scripts/wait.ts"}],"state/Context.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = exports.MyContext = void 0;
-var _react = _interopRequireWildcard(require("react"));
-function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
-function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
-//Reducer to help regulate state
-//-----
-
-//----variables
-const MyContext = exports.MyContext = _react.default.createContext();
-const initialData = {
-  dummyData: "abc123",
-  //dummy data
-
-  currentNumber: 0,
-  Number_Generator: false
-};
-
-//-----[ FUNCTIONS ]:
-const MyContextProvider = ({
-  children
-}) => {
-  const [data, setData] = (0, _react.useState)(initialData);
-
-  //Function that will update data:
-  const Dispatch = newValue => {
-    setData(newValue); //useState
-  };
-
-  //return data:
-  return /*#__PURE__*/_react.default.createElement(MyContext.Provider, {
-    value: {
-      data,
-      Dispatch
-    }
-  }, children);
-};
-
-//EXPORTS----------
-var _default = exports.default = MyContextProvider;
-},{"react":"node_modules/react/index.js"}],"styles/number.css":[function(require,module,exports) {
+},{"./wait":"simulators/Number/scripts/wait.ts"}],"styles/number.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
@@ -37412,7 +37444,7 @@ function NumberGenerator() {
   //--------------------
   (0, _react.useEffect)(() => {
     //authentication check:
-    if (data.Number_Generator === false) {
+    if (data.Number_Option === false) {
       navigate("/");
     }
   });
@@ -37514,7 +37546,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56860" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65125" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

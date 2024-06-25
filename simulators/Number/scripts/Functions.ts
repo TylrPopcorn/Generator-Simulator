@@ -17,6 +17,7 @@ const Functions: FunctionsType = {
 //----------------                  ---------[ FUNCTIONS ]--------                      ----------------------------
 //
 
+//=============== [ mouse - CLICKED ] ==============\\
 Functions["Clicked"] = function () {
   //Each time the button gets clicked on.
   //----------------

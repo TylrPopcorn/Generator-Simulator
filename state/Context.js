@@ -8,7 +8,7 @@ const initialData = {
   dummyData: "abc123", //dummy data
 
   currentNumber: 0,
-  Number_Generator: false,
+  Number_Option: false,
 };
 
 //-----[ FUNCTIONS ]:

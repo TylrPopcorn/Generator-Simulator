@@ -49,7 +49,7 @@ function NumberGenerator() {
   //--------------------
   useEffect(() => {
     //authentication check:
-    if (data.Number_Generator === false) {
+    if (data.Number_Option === false) {
       navigate("/");
     }
   });
