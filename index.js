@@ -4,9 +4,6 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-//styles:]--
-import "./styles/styles.css";
-
 /*
  Dependencies:
  -------------
@@ -17,10 +14,12 @@ import "./styles/styles.css";
 
 //components:]--
 import Redirect from "./src/Redirect";
+//----
 import HOME from "./src/HOME";
 import NumberGenerator from "./simulators/Number/NumberGenerator";
 import MyContextProvider from "./state/Context";
-//
+//---
+import { MyContext } from "./state/Context.js"; //global state / reducer
 
 //vars:
 //----
@@ -35,7 +34,7 @@ root.render(
       {/*----------------------------*/}
       <Routes>
         {/* ROUTES */}
-        <Route path="/" element={<HOME />} />
+        <Route path="/" element={<HOME MyContext={MyContext} />} />
         <Route exact path="Number" element={<NumberGenerator />} />
 
         {/* ----- Catch all unknown pages ----- */}

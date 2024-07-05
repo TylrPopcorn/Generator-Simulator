@@ -1,0 +1,32 @@
+/* [VARIABLES:] */
+:root {
+  --background: rgb(4, 4, 4);
+}
+
+/*--HTML--*/
+html,
+body {
+  /* min-height: 100vh; */
+
+  background: var(--background);
+  color: #ffffff;
+
+  /* font-family: "Courier New", Courier, monospace; */
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+#wrapper {
+  background: var(--background);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin: 0;
+  padding: 0;
+}
+
+
+/*# sourceMappingURL=/styles.956d002c.css.map */
