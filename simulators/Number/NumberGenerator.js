@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 //imports:]--
 import Functions from "./scripts/Functions.ts";
-import { MyContext } from "../../state/Context";
+import { MyContext } from "../../state/Context"; //PASS THIS DOWN IN PROPS?
 import wait from "./scripts/wait";
 
 //styles:]--
@@ -48,7 +48,7 @@ function NumberGenerator() {
   //Each time the page loads.
   //--------------------
   useEffect(() => {
-    //authentication check:
+    //authentication check: [TODO]
     if (data.Number_Option === false) {
       navigate("/");
     }

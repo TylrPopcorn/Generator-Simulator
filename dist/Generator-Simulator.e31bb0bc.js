@@ -37228,9 +37228,7 @@ function HOME(props) {
   };
   (0, _react.useEffect)(() => {
     //useEffect() each time the component mounts.
-    {
-      _Functions.default["componentDidMount"]();
-    }
+    _Functions.default["componentDidMount"]();
   }, []);
 
   //---HTML:
@@ -37403,6 +37401,8 @@ function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; 
 
 //imports:]--
 
+//PASS THIS DOWN IN PROPS?
+
 //styles:]--
 
 //vars:]--------
@@ -37444,7 +37444,7 @@ function NumberGenerator() {
   //Each time the page loads.
   //--------------------
   (0, _react.useEffect)(() => {
-    //authentication check:
+    //authentication check: [TODO]
     if (data.Number_Option === false) {
       navigate("/");
     }
@@ -37478,7 +37478,76 @@ function NumberGenerator() {
 //---  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 //---[ EXPORTS ]---\\
 var _default = exports.default = NumberGenerator; //-------------------
-},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/dist/index.js","./scripts/Functions.ts":"simulators/Number/scripts/Functions.ts","../../state/Context":"state/Context.js","./scripts/wait":"simulators/Number/scripts/wait.ts","../../styles/styles.css":"styles/styles.css","../../styles/number.css":"styles/number.css"}],"index.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/dist/index.js","./scripts/Functions.ts":"simulators/Number/scripts/Functions.ts","../../state/Context":"state/Context.js","./scripts/wait":"simulators/Number/scripts/wait.ts","../../styles/styles.css":"styles/styles.css","../../styles/number.css":"styles/number.css"}],"simulators/Word/scripts/wait.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+// This function will wait for the specified time in milliseconds.
+function wait(time) {
+  return new Promise(function (resolve) {
+    setTimeout(resolve, time);
+  });
+}
+exports.default = wait;
+},{}],"styles/word.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"simulators/Word/WordGenerator.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _react = _interopRequireDefault(require("react"));
+var _wait = _interopRequireDefault(require("./scripts/wait"));
+require("../../styles/word.css");
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+//W O R D  G E N E R A T O R
+//---------------------------
+
+//imports:]--
+
+//styles:]--
+
+//vars:]-------
+let vars = {
+  TITLE: "WORD GENERATOR" /*TITLE OF THE PAGE*/
+
+  //--add more variables here:--
+  //--
+  //--
+};
+
+//------[ MAIN COMPONENT ]------\\
+function WordGenerator() {
+  //-------vars:
+
+  //----HTML: -----------
+  return /*#__PURE__*/_react.default.createElement("div", {
+    id: "wrapper",
+    className: "App"
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "WordArea"
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "WordHolder_outside"
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "WordHolder_middle"
+  }, /*#__PURE__*/_react.default.createElement("p", {
+    className: "randomWord"
+  }, "TEST")))), /*#__PURE__*/_react.default.createElement("div", {
+    className: "ButtonHolder"
+  }, /*#__PURE__*/_react.default.createElement("button", {
+    className: "GenerateButton"
+  }, " Generate ")));
+}
+
+//---[ EXPORTS ]---\\
+var _default = exports.default = WordGenerator; //-------------------
+},{"react":"node_modules/react/index.js","./scripts/wait":"simulators/Word/scripts/wait.ts","../../styles/word.css":"styles/word.css"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -37487,6 +37556,7 @@ var _reactRouterDom = require("react-router-dom");
 var _Redirect = _interopRequireDefault(require("./src/Redirect"));
 var _HOME = _interopRequireDefault(require("./src/HOME"));
 var _NumberGenerator = _interopRequireDefault(require("./simulators/Number/NumberGenerator"));
+var _WordGenerator = _interopRequireDefault(require("./simulators/Word/WordGenerator"));
 var _Context = _interopRequireDefault(require("./state/Context"));
 var _Context2 = require("./state/Context.js");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -37506,6 +37576,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //----
 
 //---
+
 //global state / reducer
 
 //vars:
@@ -37522,10 +37593,14 @@ root.render( /*#__PURE__*/_react.default.createElement(_Context.default, null, /
   path: "Number",
   element: /*#__PURE__*/_react.default.createElement(_NumberGenerator.default, null)
 }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
+  exact: true,
+  path: "Word",
+  element: /*#__PURE__*/_react.default.createElement(_WordGenerator.default, null)
+}), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
   path: "*",
   element: /*#__PURE__*/_react.default.createElement(_Redirect.default, null)
 })))));
-},{"react":"node_modules/react/index.js","react-dom/client":"node_modules/react-dom/client.js","react-router-dom":"node_modules/react-router-dom/dist/index.js","./src/Redirect":"src/Redirect.js","./src/HOME":"src/HOME.js","./simulators/Number/NumberGenerator":"simulators/Number/NumberGenerator.js","./state/Context":"state/Context.js","./state/Context.js":"state/Context.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","react-dom/client":"node_modules/react-dom/client.js","react-router-dom":"node_modules/react-router-dom/dist/index.js","./src/Redirect":"src/Redirect.js","./src/HOME":"src/HOME.js","./simulators/Number/NumberGenerator":"simulators/Number/NumberGenerator.js","./simulators/Word/WordGenerator":"simulators/Word/WordGenerator.js","./state/Context":"state/Context.js","./state/Context.js":"state/Context.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -37550,7 +37625,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62136" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56137" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

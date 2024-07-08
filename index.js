@@ -17,8 +17,9 @@ import Redirect from "./src/Redirect";
 //----
 import HOME from "./src/HOME";
 import NumberGenerator from "./simulators/Number/NumberGenerator";
-import MyContextProvider from "./state/Context";
+import WordGenerator from "./simulators/Word/WordGenerator";
 //---
+import MyContextProvider from "./state/Context";
 import { MyContext } from "./state/Context.js"; //global state / reducer
 
 //vars:
@@ -36,6 +37,7 @@ root.render(
         {/* ROUTES */}
         <Route path="/" element={<HOME MyContext={MyContext} />} />
         <Route exact path="Number" element={<NumberGenerator />} />
+        <Route exact path="Word" element={<WordGenerator />} />
 
         {/* ----- Catch all unknown pages ----- */}
         <Route path="*" element={<Redirect />} />
