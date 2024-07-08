@@ -505,6 +505,7 @@ body {
   border-radius: 20px;
   /* background-color: rgb(53, 52, 52, 0.2); */
   height: 8vh;
+  min-height: 35px;
   width: 20%; /* Stretch across the whole screen */
 
   display: flex;

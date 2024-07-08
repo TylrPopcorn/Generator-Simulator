@@ -55,9 +55,7 @@ function HOME(props) {
 
   useEffect(() => {
     //useEffect() each time the component mounts.
-    {
-      Functions["componentDidMount"]();
-    }
+    Functions["componentDidMount"]();
   }, []);
 
   //---HTML:
